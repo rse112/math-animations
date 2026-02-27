@@ -1,0 +1,197 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "8.2 SVD의 기하학적 의미 — 회전-스트레치-회전",
+      "description": "SVD(특이값 분해)의 기하학적 의미를 단위원이 타원으로 변환되는 과정으로 직관적으로 설명합니다. V^T(회전)→Σ(스케일)→U(회전)의 3단계, 스펙트럴 노름, 프로베니우스 노름까지 Manim 애니메이션으로 완벽 정리.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "특이값 분해(SVD) (Chapter 8)",
+      "keywords": ["SVD 기하학", "회전 스트레치", "단위원 타원", "스펙트럴 노름", "프로베니우스 노름", "선형대수"],
+      "timeRequired": "PT10M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.8 특이값 분해(SVD)", "item": "https://example.com/blog/chapter-8/" },
+        { "@type": "ListItem", "position": 4, "name": "8.2 SVD의 기하학적 의미", "item": "https://example.com/blog/8-2-svd-geometric" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">복잡한 기계도 결국 단순한 부품들의 조합이다. 엔진은 폭발, 피스톤 운동, 회전 운동으로 분해되고, 레버는 힘의 방향 전환과 크기 변화로 분해된다. 선형변환도 마찬가지다. 아무리 복잡한 선형변환이라도, SVD는 그것을 <b>세 가지 단순한 기하학적 동작의 연속</b>으로 분해한다.</p>
+<p data-ke-size="size16">$A = U\Sigma V^T$에서 $\vec{x}$에 $A$를 적용하는 과정:</p>
+$$A\vec{x} = U\Sigma V^T \vec{x}$$
+<p data-ke-size="size16">오른쪽에서 왼쪽으로 읽으면: 먼저 $V^T$를 적용(회전), 그 다음 $\Sigma$를 적용(늘리기), 마지막으로 $U$를 적용(회전). 이 세 단계가 모든 선형변환의 본질이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 세 단계의 기하학적 해석 ══ -->
+<h2 data-ke-size="size26">세 단계의 기하학적 해석</h2>
+
+<h3 data-ke-size="size23">전체 구조</h3>
+$$A\vec{x} = \underbrace{U}_{\text{3. 회전}} \underbrace{\Sigma}_{\text{2. 늘리기}} \underbrace{V^T}_{\text{1. 회전}} \vec{x}$$
+
+<h3 data-ke-size="size23">1단계: $V^T$ — 입력 공간에서의 회전</h3>
+<p data-ke-size="size16">$V^T$는 직교행렬이므로 길이와 각도를 보존하는 <b>등거리 변환</b>이다. 구체적으로 $V^T$는 입력 벡터들을 $V$의 열벡터($\vec{v}_1, \vec{v}_2, \ldots$)가 표준 축 방향을 향하도록 <b>좌표계를 회전</b>시킨다.</p>
+$$\vec{x} \xrightarrow{V^T} V^T\vec{x}$$
+<p data-ke-size="size16">이 단계 후, 좌표계의 축들이 우특이벡터 $\vec{v}_i$ 방향으로 정렬된다.</p>
+
+<h3 data-ke-size="size23">2단계: $\Sigma$ — 각 축 방향으로 늘리기(스케일링)</h3>
+<p data-ke-size="size16">$\Sigma$는 대각행렬로, 각 축 방향으로 독립적으로 스케일링한다. $i$번째 축은 $\sigma_i$배로 변한다:</p>
+$$V^T\vec{x} \xrightarrow{\Sigma} \Sigma V^T\vec{x}$$
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$\sigma_1 \geq \sigma_2 \geq \cdots$이므로 첫 번째 방향이 가장 크게 늘어난다</li>
+<li>$\sigma_i = 0$이면 해당 방향이 영(零)으로 붕괴 — 차원 감소</li>
+<li>이 단계에서 도형의 <b>모양</b>이 변한다 (길이 변화 발생)</li>
+</ul>
+
+<h3 data-ke-size="size23">3단계: $U$ — 출력 공간에서의 회전</h3>
+<p data-ke-size="size16">마지막으로 $U$가 출력 벡터들을 좌특이벡터 $\vec{u}_i$ 방향으로 <b>다시 회전</b>시킨다:</p>
+$$\Sigma V^T\vec{x} \xrightarrow{U} U\Sigma V^T\vec{x} = A\vec{x}$$
+<p data-ke-size="size16">이 단계도 길이와 각도를 보존한다. 오직 $\Sigma$ 단계만이 도형의 크기를 변화시킨다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_2_SVDGeometric.gif" alt="SVD 기하학적 의미 — 단위원이 타원으로 변환되는 과정" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 단위원이 타원으로 변하는 과정 ══ -->
+<h2 data-ke-size="size26">단위원이 타원으로 변하는 과정</h2>
+
+<h3 data-ke-size="size23">핵심 정리</h3>
+<p data-ke-size="size16">$n$차원 단위구(unit sphere)를 $A$로 변환하면, 결과는 다음을 반축으로 갖는 <b>타원</b>이다:</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>반축의 <b>방향</b>: 좌특이벡터 $\vec{u}_1, \vec{u}_2, \ldots$</li>
+<li>반축의 <b>길이</b>: 특이값 $\sigma_1, \sigma_2, \ldots$</li>
+</ul>
+$$\{A\vec{x} : \|\vec{x}\| = 1\} = \text{반축이 } \sigma_i \text{이고 방향이 } \vec{u}_i \text{인 타원}$$
+
+<h3 data-ke-size="size23">2차원 예시</h3>
+$$A = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$$
+<p data-ke-size="size16">이 행렬의 SVD를 통해 특이값을 구하면 $\sigma_1$과 $\sigma_2$가 나온다. 단위원의 각 점 $\vec{x} = (\cos\theta, \sin\theta)$를 $A$로 변환하면, 결과는 타원 위의 점이 된다.</p>
+<p data-ke-size="size16">단계별로:</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>$V^T$: 단위원을 회전 (여전히 원)</li>
+<li>$\Sigma$: x축 방향 $\sigma_1$배, y축 방향 $\sigma_2$배 → 타원</li>
+<li>$U$: 타원을 회전 (타원의 반축 방향이 $\vec{u}_1, \vec{u}_2$로 정렬)</li>
+</ol>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 직관: 모든 선형변환 = 회전-스트레치-회전 ══ -->
+<h2 data-ke-size="size26">직관: 모든 선형변환 = 회전-스트레치-회전</h2>
+
+<h3 data-ke-size="size23">왜 이것이 강력한가?</h3>
+<p data-ke-size="size16">어떤 선형변환이든 세 가지 단순한 동작으로 환원된다는 사실은 놀랍다. 이는 다음을 의미한다:</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li><b>"가장 중요한 방향"이 존재한다</b>: 가장 큰 특이값 $\sigma_1$에 대응하는 $\vec{v}_1$ 방향이 변환의 최대 효과 방향이다.
+$$\max_{\|\vec{x}\|=1} \|A\vec{x}\| = \sigma_1, \quad \text{최대점은 } \vec{x} = \vec{v}_1$$</li>
+<li><b>"가장 덜 중요한 방향"도 있다</b>: 가장 작은 특이값 $\sigma_r$에 대응하는 방향이 변환의 최소 효과 방향이다.</li>
+<li><b>차원 축소가 자연스럽다</b>: $\sigma_i \approx 0$인 방향들은 변환 후 거의 사라지므로, 큰 특이값에 대응하는 방향들이 "본질적인 방향"이다.</li>
+</ol>
+
+<h3 data-ke-size="size23">직교변환의 기하학적 효과 비교</h3>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>변환</th>
+<th>기하학적 효과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V^T$ (직교, $\det=1$)</td>
+<td>회전</td>
+</tr>
+<tr>
+<td>$V^T$ (직교, $\det=-1$)</td>
+<td>반사 포함 회전</td>
+</tr>
+<tr>
+<td>$\Sigma$ (대각)</td>
+<td>각 축 방향 스케일링</td>
+</tr>
+<tr>
+<td>$U$ (직교)</td>
+<td>회전 (또는 반사 포함)</td>
+</tr>
+<tr>
+<td>$A = U\Sigma V^T$</td>
+<td>위 세 가지 합성</td>
+</tr>
+</tbody>
+</table>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 행렬의 최대 신장률과 최소 신장률 ══ -->
+<h2 data-ke-size="size26">행렬의 최대 신장률과 최소 신장률</h2>
+
+<h3 data-ke-size="size23">스펙트럴 노름 (Spectral Norm)</h3>
+<p data-ke-size="size16">행렬의 <b>스펙트럴 노름(operator 2-norm)</b>은 가장 큰 특이값이다:</p>
+$$\|A\|_2 = \sigma_1 = \max_{\vec{x} \neq 0} \frac{\|A\vec{x}\|}{\|\vec{x}\|}$$
+<p data-ke-size="size16">이는 단위벡터 중 $A$가 가장 크게 늘리는 벡터($\vec{v}_1$)에서의 늘림 비율이다.</p>
+
+<h3 data-ke-size="size23">프로베니우스 노름과 SVD</h3>
+$$\|A\|_F = \sqrt{\sum_{i,j} a_{ij}^2} = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}$$
+<p data-ke-size="size16">SVD를 통해 행렬의 다양한 노름을 특이값으로 표현할 수 있다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명 / 공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SVD의 3단계</td>
+<td>$V^T$(회전) → $\Sigma$(스케일) → $U$(회전)</td>
+</tr>
+<tr>
+<td>단위구의 변환</td>
+<td>반축 길이 $\sigma_i$, 방향 $\vec{u}_i$인 타원</td>
+</tr>
+<tr>
+<td>최대 신장 방향</td>
+<td>$\vec{v}_1$ (첫 번째 우특이벡터)</td>
+</tr>
+<tr>
+<td>최대 신장 비율</td>
+<td>$\sigma_1$ (첫 번째 특이값)</td>
+</tr>
+<tr>
+<td>스펙트럴 노름</td>
+<td>$\|A\|_2 = \sigma_1$</td>
+</tr>
+<tr>
+<td>프로베니우스 노름</td>
+<td>$\|A\|_F = \sqrt{\sum \sigma_i^2}$</td>
+</tr>
+<tr>
+<td>핵심 직관</td>
+<td>모든 선형변환 = 회전-스트레치-회전</td>
+</tr>
+<tr>
+<td>차원 감소</td>
+<td>$\sigma_i \approx 0$인 방향은 "비중요"</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>SVD의 응용</b>을 살펴보며, 저랭크 근사, 이미지 압축, PCA 연결, 의사역행렬 등 SVD가 실제로 어떻게 활용되는지 구체적인 예시와 함께 알아본다.</p>

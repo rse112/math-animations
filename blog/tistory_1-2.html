@@ -1,0 +1,162 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "1.2 벡터의 덧셈과 뺄셈 — 평행사변형 법칙과 Tip-to-Tail",
+      "description": "벡터 덧셈과 뺄셈의 성분 계산법, Tip-to-Tail 법칙, 평행사변형 법칙을 Manim 애니메이션으로 직관적으로 설명합니다. 교환법칙, 결합법칙, 역벡터 개념까지 완벽 정리.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://gunbungmath.tistory.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "벡터 (Chapter 1)",
+      "keywords": ["벡터 덧셈", "벡터 뺄셈", "평행사변형 법칙", "Tip-to-Tail", "선형대수", "역벡터"],
+      "timeRequired": "PT9M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://gunbungmath.tistory.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수학", "item": "https://gunbungmath.tistory.com/category/선형대수학" },
+        { "@type": "ListItem", "position": 3, "name": "1.2 벡터의 덧셈과 뺄셈", "item": "https://gunbungmath.tistory.com/34" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">서울에서 출발해 동쪽으로 3km 이동한 뒤, 다시 북쪽으로 4km 이동했다고 하자. 최종 위치는 어디일까? 두 번의 이동을 합치면 결국 출발점으로부터 "동쪽 3km, 북쪽 4km" 떨어진 곳에 있게 된다. 이처럼 <b>두 이동(변위)을 합치는 연산</b>이 바로 벡터의 덧셈이다.</p>
+<p data-ke-size="size16">벡터의 뺄셈도 일상에서 쉽게 만날 수 있다. 친구가 현재 $B$ 지점에 있고 내가 $A$ 지점에 있을 때, "나에서 친구까지의 상대적인 변위"는 $\vec{B} - \vec{A}$로 나타낼 수 있다. 즉, 두 위치벡터의 차이가 상대적인 방향과 거리를 알려준다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 벡터의 덧셈 ══ -->
+<h2 data-ke-size="size26">벡터의 덧셈</h2>
+
+<h3 data-ke-size="size23">성분별 덧셈</h3>
+<p data-ke-size="size16">두 벡터 $\vec{u} = (u_1, u_2)$, $\vec{v} = (v_1, v_2)$가 있을 때, 덧셈은 <b>같은 축 방향의 성분끼리</b> 더하면 된다.</p>
+$$\vec{u} + \vec{v} = (u_1 + v_1,\ u_2 + v_2)$$
+<p data-ke-size="size16">3차원으로 확장하면:</p>
+$$\vec{u} + \vec{v} = (u_1 + v_1,\ u_2 + v_2,\ u_3 + v_3)$$
+<p data-ke-size="size16"><b>예시:</b> $\vec{u} = (3, 1)$, $\vec{v} = (1, 4)$일 때</p>
+$$\vec{u} + \vec{v} = (3+1,\ 1+4) = (4,\ 5)$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_2_VectorAddition.gif" alt="벡터 덧셈 Tip-to-Tail 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">기하학적 해석: Tip-to-Tail 법칙</h3>
+<p data-ke-size="size16">벡터 덧셈을 기하학적으로 보는 첫 번째 방법은 <b>Tip-to-Tail(끝에서 꼬리) 법칙</b>이다.</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>$\vec{u}$를 임의의 위치에 그린다.</li>
+<li>$\vec{u}$의 <b>끝점(tip)</b>에 $\vec{v}$의 <b>시작점(tail)</b>을 붙인다.</li>
+<li>$\vec{u}$의 시작점에서 $\vec{v}$의 끝점으로 향하는 화살표가 바로 $\vec{u} + \vec{v}$이다.</li>
+</ol>
+<p data-ke-size="size16">이 방법은 "두 번 이동한 뒤의 최종 변위"를 직관적으로 보여준다.</p>
+
+<h3 data-ke-size="size23">기하학적 해석: 평행사변형 법칙</h3>
+<p data-ke-size="size16">두 번째 방법은 <b>평행사변형 법칙(Parallelogram Law)</b>이다.</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>같은 시작점에서 $\vec{u}$와 $\vec{v}$를 각각 그린다.</li>
+<li>두 벡터를 두 변으로 하는 <b>평행사변형</b>을 그린다.</li>
+<li>평행사변형의 <b>대각선</b>이 $\vec{u} + \vec{v}$이다.</li>
+</ol>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_2_ParallelogramRule.gif" alt="평행사변형 법칙 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 덧셈의 성질 ══ -->
+<h2 data-ke-size="size26">덧셈의 성질</h2>
+<p data-ke-size="size16">벡터 $\vec{u}$, $\vec{v}$, $\vec{w}$와 영벡터 $\vec{0} = (0, 0)$에 대해 다음 성질이 성립한다.</p>
+
+<h3 data-ke-size="size23">교환법칙 (Commutativity)</h3>
+$$\vec{u} + \vec{v} = \vec{v} + \vec{u}$$
+<p data-ke-size="size16">평행사변형을 떠올리면 직관적으로 이해할 수 있다. 어느 변을 먼저 그려도 대각선은 동일하다.</p>
+
+<h3 data-ke-size="size23">결합법칙 (Associativity)</h3>
+$$(\vec{u} + \vec{v}) + \vec{w} = \vec{u} + (\vec{v} + \vec{w})$$
+<p data-ke-size="size16">세 벡터를 더하는 순서를 바꾸어도 결과는 같다.</p>
+
+<h3 data-ke-size="size23">영벡터 (Zero Vector)</h3>
+<p data-ke-size="size16">모든 성분이 0인 벡터 $\vec{0} = (0, 0)$은 <b>덧셈의 항등원</b>이다.</p>
+$$\vec{v} + \vec{0} = \vec{0} + \vec{v} = \vec{v}$$
+
+<h3 data-ke-size="size23">역벡터 (Additive Inverse)</h3>
+<p data-ke-size="size16">벡터 $\vec{v} = (v_1, v_2)$에 대해 <b>역벡터</b> $-\vec{v} = (-v_1, -v_2)$가 존재한다.</p>
+$$\vec{v} + (-\vec{v}) = \vec{0}$$
+<p data-ke-size="size16">역벡터는 $\vec{v}$와 <b>크기는 같고 방향이 반대</b>인 벡터다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 벡터의 뺄셈 ══ -->
+<h2 data-ke-size="size26">벡터의 뺄셈</h2>
+
+<h3 data-ke-size="size23">정의</h3>
+<p data-ke-size="size16">벡터의 뺄셈은 <b>역벡터를 더하는 연산</b>으로 정의한다.</p>
+$$\vec{u} - \vec{v} = \vec{u} + (-\vec{v})$$
+<p data-ke-size="size16">성분별로 계산하면:</p>
+$$\vec{u} - \vec{v} = (u_1 - v_1,\ u_2 - v_2)$$
+<p data-ke-size="size16"><b>예시:</b> $\vec{u} = (5, 3)$, $\vec{v} = (2, 1)$일 때</p>
+$$\vec{u} - \vec{v} = (5-2,\ 3-1) = (3,\ 2)$$
+
+<h3 data-ke-size="size23">뺄셈의 기하학적 의미</h3>
+<p data-ke-size="size16">같은 시작점에서 $\vec{u}$와 $\vec{v}$를 그렸을 때, $\vec{u} - \vec{v}$는 <b>$\vec{v}$의 끝점에서 $\vec{u}$의 끝점으로 향하는 벡터</b>이다.</p>
+<p data-ke-size="size16">다시 말해, $\vec{u} - \vec{v}$는 "$\vec{v}$의 위치에서 $\vec{u}$의 위치까지의 상대적인 변위"를 나타낸다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_2_VectorSubtraction.gif" alt="벡터 뺄셈 기하학적 의미 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명 / 공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>벡터 덧셈 (성분)</td>
+<td>$\vec{u} + \vec{v} = (u_1+v_1,\ u_2+v_2)$</td>
+</tr>
+<tr>
+<td>Tip-to-Tail 법칙</td>
+<td>$\vec{v}$의 꼬리를 $\vec{u}$의 끝에 붙이면 합벡터</td>
+</tr>
+<tr>
+<td>평행사변형 법칙</td>
+<td>두 벡터를 변으로 하는 평행사변형의 대각선이 합벡터</td>
+</tr>
+<tr>
+<td>교환법칙</td>
+<td>$\vec{u} + \vec{v} = \vec{v} + \vec{u}$</td>
+</tr>
+<tr>
+<td>결합법칙</td>
+<td>$(\vec{u}+\vec{v})+\vec{w} = \vec{u}+(\vec{v}+\vec{w})$</td>
+</tr>
+<tr>
+<td>영벡터</td>
+<td>$\vec{v} + \vec{0} = \vec{v}$</td>
+</tr>
+<tr>
+<td>역벡터</td>
+<td>$\vec{v} + (-\vec{v}) = \vec{0}$, 방향이 반대인 벡터</td>
+</tr>
+<tr>
+<td>벡터 뺄셈</td>
+<td>$\vec{u} - \vec{v} = \vec{u} + (-\vec{v}) = (u_1-v_1,\ u_2-v_2)$</td>
+</tr>
+<tr>
+<td>뺄셈의 기하학적 의미</td>
+<td>$\vec{v}$ 끝점에서 $\vec{u}$ 끝점으로 향하는 벡터</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>스칼라 곱(Scalar Multiplication)</b>을 알아본다.</p>

@@ -1,0 +1,175 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "3.3 역행렬과 행렬식 — 행렬 방정식의 해를 구하는 핵심 도구",
+      "description": "역행렬의 정의·유일성·성질, 2×2 역행렬 공식, 행렬식의 기하학적 의미(넓이 배율), 역행렬 존재 조건(det≠0)을 Manim 애니메이션과 함께 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "행렬 (Chapter 3)",
+      "keywords": ["역행렬", "행렬식", "determinant", "inverse matrix", "가역행렬", "특이행렬", "선형대수"],
+      "timeRequired": "PT11M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.3 행렬", "item": "https://example.com/blog/chapter-3/" },
+        { "@type": "ListItem", "position": 4, "name": "3.3 역행렬과 행렬식", "item": "https://example.com/blog/3-3-inverse-determinant" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">스칼라 방정식 $ax = b$를 풀 때, $a \neq 0$이면 양변에 $a^{-1} = \frac{1}{a}$를 곱해 $x = a^{-1}b$를 얻는다. 행렬 방정식 $A\vec{x} = \vec{b}$도 같은 아이디어로 풀 수 있다면 어떨까? 만약 행렬 $A$에 대해 "행렬 버전의 역수"가 존재한다면, 양변에 그것을 곱해 $\vec{x}$를 구할 수 있다. 이것이 <b>역행렬(Inverse Matrix)</b>의 핵심 아이디어다.</p>
+<p data-ke-size="size16">그러나 모든 $a$가 역수를 갖지는 않는다 — $a = 0$이면 $\frac{1}{0}$은 존재하지 않는다. 행렬에도 마찬가지로 역행렬이 존재하지 않는 경우가 있다. 역행렬의 존재 여부를 판단하는 도구가 <b>행렬식(Determinant)</b>이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 역행렬의 정의 ══ -->
+<h2 data-ke-size="size26">역행렬의 정의</h2>
+
+<h3 data-ke-size="size23">정의</h3>
+<p data-ke-size="size16">$n \times n$ 정방행렬 $A$에 대해, 다음을 만족하는 행렬 $A^{-1}$을 $A$의 <b>역행렬</b>이라 한다.</p>
+$$A A^{-1} = A^{-1} A = I$$
+<p data-ke-size="size16">역행렬이 존재하는 행렬을 <b>가역행렬(Invertible Matrix)</b> 또는 <b>비특이행렬(Non-singular Matrix)</b>이라 하고, 역행렬이 존재하지 않으면 <b>특이행렬(Singular Matrix)</b>이라 한다.</p>
+
+<h3 data-ke-size="size23">역행렬의 유일성</h3>
+<p data-ke-size="size16">역행렬이 존재하면 그것은 유일하다. 만약 $B$와 $C$ 둘 다 $A$의 역행렬이라면:</p>
+$$B = BI = B(AC) = (BA)C = IC = C$$
+
+<h3 data-ke-size="size23">역행렬의 성질</h3>
+$$(A^{-1})^{-1} = A$$
+$$(AB)^{-1} = B^{-1}A^{-1} \quad \text{(순서 역전!)}$$
+$$(A^T)^{-1} = (A^{-1})^T$$
+$$(cA)^{-1} = \frac{1}{c}A^{-1} \quad (c \neq 0)$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 2×2 역행렬 공식 ══ -->
+<h2 data-ke-size="size26">2×2 역행렬 공식</h2>
+
+<h3 data-ke-size="size23">공식</h3>
+$$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \implies A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
+<p data-ke-size="size16">단, $ad - bc \neq 0$이어야 한다.</p>
+
+<h3 data-ke-size="size23">기억법</h3>
+<p data-ke-size="size16">대각선 원소를 맞바꾸고($a \leftrightarrow d$), 비대각 원소의 부호를 바꾼 뒤($b \to -b$, $c \to -c$), $\frac{1}{ad-bc}$를 곱한다.</p>
+
+<h3 data-ke-size="size23">예시</h3>
+$$A = \begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$$
+$$\det A = 3 \cdot 2 - 1 \cdot 5 = 6 - 5 = 1$$
+$$A^{-1} = \frac{1}{1}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$$
+<p data-ke-size="size16">검증: $AA^{-1} = \begin{pmatrix}3&1\\5&2\end{pmatrix}\begin{pmatrix}2&-1\\-5&3\end{pmatrix} = \begin{pmatrix}1&0\\0&1\end{pmatrix} = I\ \checkmark$</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_InverseMatrix2x2.gif" alt="2×2 역행렬 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 행렬식 ══ -->
+<h2 data-ke-size="size26">행렬식 (Determinant)</h2>
+
+<h3 data-ke-size="size23">2×2 행렬식</h3>
+$$\det A = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$$
+<p data-ke-size="size16">또는 $|A|$로도 표기한다.</p>
+
+<h3 data-ke-size="size23">기하학적 의미 — 넓이 배율</h3>
+<p data-ke-size="size16">2차원에서 행렬 $A$의 열벡터들이 이루는 <b>평행사변형의 넓이</b>가 $|\det A|$이다. 더 일반적으로, $A$는 공간의 모든 도형의 넓이를 $|\det A|$배로 바꾼다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$|\det A| > 1$: 넓이가 확대된다.</li>
+<li>$|\det A| = 1$: 넓이가 보존된다 (등적 변환).</li>
+<li>$|\det A| = 0$: 넓이가 0이 된다 — 평면이 선으로 찌부러진다.</li>
+<li>$\det A < 0$: 방향(오리엔테이션)이 뒤집힌다.</li>
+</ul>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_Determinant2x2.gif" alt="2×2 행렬식 기하학적 의미 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">3×3 행렬식</h3>
+$$\det\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix} = a_{11}(a_{22}a_{33}-a_{23}a_{32}) - a_{12}(a_{21}a_{33}-a_{23}a_{31}) + a_{13}(a_{21}a_{32}-a_{22}a_{31})$$
+<p data-ke-size="size16">이 전개를 <b>라플라스 전개(Laplace Expansion)</b>라 하며, 첫 번째 행에 대해 전개한 것이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 행렬식의 성질 ══ -->
+<h2 data-ke-size="size26">행렬식의 성질</h2>
+
+<h3 data-ke-size="size23">곱의 행렬식</h3>
+$$\det(AB) = \det(A) \cdot \det(B)$$
+<p data-ke-size="size16">이 성질은 매우 강력하다. 행렬 곱의 행렬식을 각각 따로 계산해 곱한 것과 같다.</p>
+
+<h3 data-ke-size="size23">전치행렬의 행렬식</h3>
+$$\det(A^T) = \det(A)$$
+
+<h3 data-ke-size="size23">역행렬의 행렬식</h3>
+$$\det(A^{-1}) = \frac{1}{\det(A)}$$
+<p data-ke-size="size16">$\det(AA^{-1}) = \det(I) = 1$이고, $\det(A)\det(A^{-1}) = 1$이므로 성립한다.</p>
+
+<h3 data-ke-size="size23">스칼라 곱의 행렬식</h3>
+$$\det(cA) = c^n \det(A) \quad (n \times n \text{ 행렬})$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 역행렬 존재 조건 ══ -->
+<h2 data-ke-size="size26">역행렬 존재 조건</h2>
+$$A^{-1} \text{ 존재} \quad \Leftrightarrow \quad \det A \neq 0$$
+<p data-ke-size="size16">이것이 핵심 판정 기준이다. $\det A = 0$이면 $A$는 특이행렬로, 역행렬이 존재하지 않는다.</p>
+<p data-ke-size="size16">기하학적으로 $\det A = 0$은 변환 후 공간이 더 낮은 차원으로 "찌부러진다"는 것을 의미한다. 정보가 손실되므로 역변환(원래 상태로 돌아가기)이 불가능하다.</p>
+$$A\vec{x} = \vec{b} \text{ 의 유일해} \quad \Leftrightarrow \quad \det A \neq 0 \quad \Leftrightarrow \quad \vec{x} = A^{-1}\vec{b}$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명/공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>역행렬 정의</td>
+<td>$AA^{-1} = A^{-1}A = I$</td>
+</tr>
+<tr>
+<td>2×2 역행렬</td>
+<td>$A^{-1} = \frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$</td>
+</tr>
+<tr>
+<td>$(AB)^{-1}$</td>
+<td>$B^{-1}A^{-1}$ (순서 역전)</td>
+</tr>
+<tr>
+<td>2×2 행렬식</td>
+<td>$\det A = ad - bc$</td>
+</tr>
+<tr>
+<td>기하학적 의미</td>
+<td>넓이(부피) 배율 $= |\det A|$</td>
+</tr>
+<tr>
+<td>곱의 행렬식</td>
+<td>$\det(AB) = \det A \cdot \det B$</td>
+</tr>
+<tr>
+<td>역행렬 존재 조건</td>
+<td>$\det A \neq 0$</td>
+</tr>
+<tr>
+<td>연립방정식 해</td>
+<td>$\det A \neq 0$이면 $\vec{x} = A^{-1}\vec{b}$</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>선형변환(Linear Transformation)</b>을 알아본다. 행렬이 벡터 공간을 어떻게 변환하는지, 그 기하학적 의미를 깊이 탐구한다.</p>

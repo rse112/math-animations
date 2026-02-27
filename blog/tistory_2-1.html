@@ -1,0 +1,171 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "2.1 내적 (Dot Product) — 두 벡터가 얼마나 같은 방향인지 측정하기",
+      "description": "내적의 대수적 정의와 기하학적 정의, 교환법칙·분배법칙·스칼라 결합 성질, 직교 조건, 벡터 각도 계산법을 Manim 애니메이션과 함께 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "내적과 외적 (Chapter 2)",
+      "keywords": ["내적", "dot product", "직교", "코사인", "벡터 각도", "선형대수", "벡터"],
+      "timeRequired": "PT10M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.2 내적과 외적", "item": "https://example.com/blog/chapter-2/" },
+        { "@type": "ListItem", "position": 4, "name": "2.1 내적", "item": "https://example.com/blog/2-1-dot-product" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">물체를 밀어서 이동시킬 때, 힘의 방향과 이동 방향이 완전히 같다면 힘이 100% 일로 전환된다. 반대로 힘을 옆 방향으로 가했는데 물체가 앞으로만 움직인다면, 그 힘은 이동에 전혀 기여하지 못한다. 물리학에서 <b>일(Work)</b>은 바로 이 관계를 수식으로 표현한 것이다.</p>
+$$W = \|\vec{F}\|\|\vec{d}\|\cos\theta$$
+<p data-ke-size="size16">여기서 $\theta$는 힘 벡터 $\vec{F}$와 변위 벡터 $\vec{d}$ 사이의 각도다. 두 벡터가 이루는 각도가 작을수록(방향이 비슷할수록) 일의 양이 커진다. 이 수식의 핵심 연산이 바로 <b>내적(Dot Product)</b>이다. 내적은 두 벡터가 얼마나 "같은 방향을 향하는지"를 하나의 스칼라 값으로 측정해 준다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 내적의 정의 ══ -->
+<h2 data-ke-size="size26">내적의 정의</h2>
+
+<h3 data-ke-size="size23">대수적 정의</h3>
+<p data-ke-size="size16">$n$차원 벡터 $\vec{u} = (u_1, u_2, \ldots, u_n)$와 $\vec{v} = (v_1, v_2, \ldots, v_n)$의 내적은 대응하는 성분끼리 곱한 뒤 모두 더한 값이다.</p>
+$$\vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n = \sum_{k=1}^{n} u_k v_k$$
+<p data-ke-size="size16"><b>예시</b> — 2차원 벡터 $\vec{u} = (3, 4)$, $\vec{v} = (1, 2)$:</p>
+$$\vec{u} \cdot \vec{v} = 3 \times 1 + 4 \times 2 = 3 + 8 = 11$$
+<p data-ke-size="size16">계산 결과는 스칼라(숫자)이다. 벡터를 입력받아 숫자를 반환하는 연산이라는 점을 기억하자.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_1_DotProductAlgebraic.gif" alt="내적 대수적 정의 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">기하학적 정의</h3>
+<p data-ke-size="size16">두 벡터 사이의 각도 $\theta$ ($0 \leq \theta \leq \pi$)를 이용하면 내적을 기하학적으로 표현할 수 있다.</p>
+$$\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos\theta$$
+<p data-ke-size="size16">여기서 $\|\vec{u}\|$는 벡터 $\vec{u}$의 크기(길이)다. 두 정의는 완전히 동등하며, 코사인 법칙을 이용하면 하나로부터 다른 하나를 유도할 수 있다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_1_DotProductGeometric.gif" alt="내적 기하학적 정의 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 내적의 성질 ══ -->
+<h2 data-ke-size="size26">내적의 성질</h2>
+
+<h3 data-ke-size="size23">교환법칙 (Commutativity)</h3>
+$$\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}$$
+<p data-ke-size="size16">성분별 곱셈의 순서를 바꿔도 합은 변하지 않으므로, 내적은 교환법칙이 성립한다.</p>
+
+<h3 data-ke-size="size23">분배법칙 (Distributivity)</h3>
+$$\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}$$
+<p data-ke-size="size16">덧셈에 대한 분배가 성립하므로, 내적을 전개하거나 묶는 대수적 조작이 자유롭다.</p>
+
+<h3 data-ke-size="size23">자기 자신과의 내적 — 크기의 제곱</h3>
+$$\vec{v} \cdot \vec{v} = v_1^2 + v_2^2 + \cdots + v_n^2 = \|\vec{v}\|^2$$
+<p data-ke-size="size16">따라서 벡터의 크기는 다음과 같이 내적으로 표현된다.</p>
+$$\|\vec{v}\| = \sqrt{\vec{v} \cdot \vec{v}}$$
+
+<h3 data-ke-size="size23">스칼라 결합</h3>
+<p data-ke-size="size16">스칼라 $c$에 대해 다음이 성립한다.</p>
+$$(c\vec{u}) \cdot \vec{v} = c(\vec{u} \cdot \vec{v}) = \vec{u} \cdot (c\vec{v})$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 직교 조건 ══ -->
+<h2 data-ke-size="size26">직교 조건</h2>
+<p data-ke-size="size16">두 벡터가 <b>직교(orthogonal)</b>한다는 것은 $\theta = 90°$를 의미한다. $\cos 90° = 0$이므로:</p>
+$$\vec{u} \cdot \vec{v} = 0 \quad \Leftrightarrow \quad \vec{u} \perp \vec{v}$$
+<p data-ke-size="size16">이 조건은 선형대수 전반에서 매우 자주 등장한다. 예를 들어 표준 기저 벡터들은 서로 직교한다.</p>
+$$\hat{i} \cdot \hat{j} = (1,0,0) \cdot (0,1,0) = 0$$
+<p data-ke-size="size16">영벡터 $\vec{0}$은 관례상 모든 벡터에 직교한다고 정의한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 각도 계산 ══ -->
+<h2 data-ke-size="size26">각도 계산</h2>
+<p data-ke-size="size16">기하학적 정의를 $\cos\theta$에 대해 풀면, 두 벡터 사이의 각도를 계산할 수 있다.</p>
+$$\cos\theta = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}$$
+$$\theta = \arccos\!\left(\frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}\right)$$
+<p data-ke-size="size16"><b>예시</b> — $\vec{u} = (1, 0)$, $\vec{v} = (1, 1)$:</p>
+$$\cos\theta = \frac{1 \cdot 1 + 0 \cdot 1}{\sqrt{1} \cdot \sqrt{2}} = \frac{1}{\sqrt{2}} \implies \theta = 45°$$
+<p data-ke-size="size16">내적의 부호만으로도 방향 관계를 빠르게 파악할 수 있다.</p>
+
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>내적 값</th>
+<th>각도 범위</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$> 0$</td>
+<td>$0° \leq \theta < 90°$</td>
+<td>같은 방향 성분 존재</td>
+</tr>
+<tr>
+<td>$= 0$</td>
+<td>$\theta = 90°$</td>
+<td>직교</td>
+</tr>
+<tr>
+<td>$< 0$</td>
+<td>$90° < \theta \leq 180°$</td>
+<td>반대 방향 성분 존재</td>
+</tr>
+</tbody>
+</table>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명/공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대수적 정의</td>
+<td>$\vec{u} \cdot \vec{v} = \sum_{k=1}^{n} u_k v_k$</td>
+</tr>
+<tr>
+<td>기하학적 정의</td>
+<td>$\vec{u} \cdot \vec{v} = \|\vec{u}\| \|\vec{v}\| \cos\theta$</td>
+</tr>
+<tr>
+<td>교환법칙</td>
+<td>$\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}$</td>
+</tr>
+<tr>
+<td>크기와의 관계</td>
+<td>$\vec{v} \cdot \vec{v} = \|\vec{v}\|^2$</td>
+</tr>
+<tr>
+<td>직교 조건</td>
+<td>$\vec{u} \cdot \vec{v} = 0 \Leftrightarrow \vec{u} \perp \vec{v}$</td>
+</tr>
+<tr>
+<td>각도 공식</td>
+<td>$\cos\theta = \dfrac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}$</td>
+</tr>
+<tr>
+<td>물리적 의미</td>
+<td>두 벡터가 얼마나 같은 방향인지를 나타내는 스칼라</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>벡터 사영(Vector Projection)</b>을 알아본다. 내적을 활용해 한 벡터를 다른 벡터 위에 "투영"하는 방법을 다룬다.</p>

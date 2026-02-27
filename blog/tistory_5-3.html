@@ -1,0 +1,224 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "5.3 차원(Dimension) — 공간의 자유도를 수로 표현하다",
+      "description": "차원의 수학적 정의, 차원 정리(모든 기저의 원소 수는 같다), 부분공간의 차원, 기저의 확장·축소를 Manim 애니메이션으로 직관적으로 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "벡터공간 (Chapter 5)",
+      "keywords": ["차원", "Dimension", "차원 정리", "부분공간", "자유도", "선형대수"],
+      "timeRequired": "PT9M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.5 벡터공간", "item": "https://example.com/blog/chapter-5/" },
+        { "@type": "ListItem", "position": 4, "name": "5.3 차원", "item": "https://example.com/blog/5-3-dimension" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">1차원은 선, 2차원은 평면, 3차원은 우리가 사는 공간 — 누구나 직관적으로 알고 있는 개념이다. 그런데 수학적으로 "차원"을 정확히 어떻게 정의할까?</p>
+<p data-ke-size="size16">차원은 그 공간을 기술하기 위해 필요한 <b>최소한의 독립적인 방향의 수</b>다. 선형대수에서 이 수는 기저의 원소 개수로 정확히 정의된다.</p>
+<p data-ke-size="size16">놀라운 사실: 같은 벡터 공간에 대해 기저를 어떻게 선택하든 <b>원소의 수는 항상 같다</b>. 이것이 차원을 잘 정의된 개념으로 만들어주는 정리다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 차원의 정의 ══ -->
+<h2 data-ke-size="size26">차원의 정의</h2>
+<p data-ke-size="size16">벡터 공간 $V$의 <b>차원(Dimension)</b>은 $V$의 기저의 원소 개수다:</p>
+$$\dim(V) = \text{(기저의 벡터 개수)}$$
+<p data-ke-size="size16">기저를 어떻게 선택해도 이 수는 변하지 않는다.</p>
+<p data-ke-size="size16"><b>특수 경우:</b> $\{\vec{0}\}$만 포함하는 영공간(zero space)의 기저는 공집합이므로</p>
+$$\dim(\{\vec{0}\}) = 0$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 친숙한 예시들 ══ -->
+<h2 data-ke-size="size26">친숙한 예시들</h2>
+
+<h3 data-ke-size="size23">$\mathbb{R}^1$ — 직선</h3>
+<p data-ke-size="size16">기저: $\{1\}$ (또는 임의의 영이 아닌 실수 하나)</p>
+$$\dim(\mathbb{R}^1) = 1$$
+
+<h3 data-ke-size="size23">$\mathbb{R}^2$ — 평면</h3>
+<p data-ke-size="size16">기저: $\{\hat{e}_1, \hat{e}_2\} = \{(1,0)^\top, (0,1)^\top\}$</p>
+$$\dim(\mathbb{R}^2) = 2$$
+<p data-ke-size="size16">또 다른 기저 예시: $\{(1,1)^\top, (1,-1)^\top\}$ — 선형 독립이고 $\mathbb{R}^2$를 생성하므로 유효한 기저.</p>
+
+<h3 data-ke-size="size23">$\mathbb{R}^3$ — 3차원 공간</h3>
+<p data-ke-size="size16">기저: $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$</p>
+$$\dim(\mathbb{R}^3) = 3$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_3_DimensionExamples.gif" alt="차원 예시 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 차원 표 ══ -->
+<h2 data-ke-size="size26">차원 표</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>공간</th>
+<th>기저 예시</th>
+<th>차원</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{\vec{0}\}$</td>
+<td>공집합 $\emptyset$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>원점을 지나는 직선</td>
+<td>직선 방향의 벡터 하나</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>원점을 포함하는 평면</td>
+<td>비평행한 두 벡터</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$\mathbb{R}^2$</td>
+<td>$\{\hat{e}_1, \hat{e}_2\}$</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$\mathbb{R}^3$</td>
+<td>$\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$</td>
+<td>$3$</td>
+</tr>
+<tr>
+<td>$\mathbb{R}^n$</td>
+<td>$\{\hat{e}_1, \ldots, \hat{e}_n\}$</td>
+<td>$n$</td>
+</tr>
+</tbody>
+</table>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 차원 정리 ══ -->
+<h2 data-ke-size="size26">차원 정리 (Dimension Theorem)</h2>
+<p data-ke-size="size16"><b>정리:</b> 유한 차원 벡터 공간 $V$의 모든 기저는 원소의 수가 같다.</p>
+<p data-ke-size="size16">이 정리가 없다면 차원의 정의 자체가 불명확해진다. 증명의 핵심 아이디어: 기저의 크기가 다른 두 기저가 있다고 가정하면 모순이 생긴다.</p>
+<p data-ke-size="size16"><b>따름정리들:</b></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$V$에서 $\dim(V)$개의 선형 독립인 벡터들은 자동으로 기저가 된다.</li>
+<li>$V$에서 $\dim(V)$개의 벡터들이 $V$를 생성하면 자동으로 기저가 된다.</li>
+</ul>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 부분공간의 차원 ══ -->
+<h2 data-ke-size="size26">부분공간의 차원</h2>
+<p data-ke-size="size16">$W$가 $V$의 부분공간이면</p>
+$$\dim(W) \leq \dim(V)$$
+<p data-ke-size="size16">등호는 $W = V$일 때만 성립한다.</p>
+<p data-ke-size="size16"><b>예시:</b> $\mathbb{R}^3$의 부분공간의 차원:</p>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>부분공간</th>
+<th>기하학적 의미</th>
+<th>차원</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{\vec{0}\}$</td>
+<td>원점</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>$\text{span}\{\vec{v}\}$</td>
+<td>원점 지나는 직선</td>
+<td>$1$</td>
+</tr>
+<tr>
+<td>$\text{span}\{\vec{v}_1, \vec{v}_2\}$</td>
+<td>원점 포함 평면</td>
+<td>$2$</td>
+</tr>
+<tr>
+<td>$\mathbb{R}^3$ 전체</td>
+<td>3차원 공간</td>
+<td>$3$</td>
+</tr>
+</tbody>
+</table>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 기저의 확장과 축소 ══ -->
+<h2 data-ke-size="size26">기저의 확장과 축소</h2>
+<p data-ke-size="size16"><b>기저 확장 정리:</b> $W$의 기저 $\mathcal{B}_W$를 $V$의 기저 $\mathcal{B}_V$로 확장할 수 있다.</p>
+<p data-ke-size="size16"><b>선형 독립 집합 확장:</b> 선형 독립인 벡터들의 집합에 벡터를 추가하면서 여전히 선형 독립을 유지하면, 기저까지 확장 가능하다.</p>
+<p data-ke-size="size16"><b>생성 집합 축소:</b> 과잉된 벡터가 있는 생성 집합에서 벡터를 제거하면서 여전히 생성을 유지하면, 기저로 축소 가능하다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 직관적 이해 ══ -->
+<h2 data-ke-size="size26">직관적 이해</h2>
+<p data-ke-size="size16">차원은 "자유도(degree of freedom)"의 수로 이해할 수 있다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>1차원 공간(직선) 위의 점을 지정하려면 숫자 <b>하나</b>가 필요.</li>
+<li>2차원 공간(평면) 위의 점을 지정하려면 숫자 <b>둘</b>이 필요.</li>
+<li>$n$차원 공간의 점을 지정하려면 숫자 <b>$n$개</b>가 필요.</li>
+</ul>
+<p data-ke-size="size16">기저의 원소 수 = 공간을 표현하기 위해 필요한 독립적인 숫자의 수 = 차원.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명/공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>차원 정의</td>
+<td>$\dim(V)$ = 기저의 원소 개수</td>
+</tr>
+<tr>
+<td>영공간 차원</td>
+<td>$\dim(\{\vec{0}\}) = 0$</td>
+</tr>
+<tr>
+<td>$\mathbb{R}^n$의 차원</td>
+<td>$\dim(\mathbb{R}^n) = n$</td>
+</tr>
+<tr>
+<td>차원 정리</td>
+<td>모든 기저는 원소의 수가 같다</td>
+</tr>
+<tr>
+<td>부분공간 차원</td>
+<td>$\dim(W) \leq \dim(V)$</td>
+</tr>
+<tr>
+<td>직관</td>
+<td>차원 = 공간 안의 점을 지정하는 데 필요한 숫자의 수</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>영공간과 열공간 — 행렬 방정식 $A\vec{x}=\vec{b}$의 해가 언제 존재하는지</b>를 알아본다.</p>

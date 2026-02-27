@@ -1,0 +1,159 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "6.1 고유값과 고유벡터란? — 정의와 기하학적 의미",
+      "description": "고유값(eigenvalue)과 고유벡터(eigenvector)의 정의를 수식과 Manim 애니메이션으로 직관적으로 설명합니다. 기하학적 의미, 고유공간, 대각행렬의 고유값까지 완벽 정리.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "고유값과 고유벡터 (Chapter 6)",
+      "keywords": ["고유값", "고유벡터", "eigenvalue", "eigenvector", "고유공간", "선형대수", "대각행렬"],
+      "timeRequired": "PT10M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.6 고유값과 고유벡터", "item": "https://example.com/blog/chapter-6/" },
+        { "@type": "ListItem", "position": 4, "name": "6.1 고유값과 고유벡터란?", "item": "https://example.com/blog/6-1-eigenvalue-definition" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">거울 앞에 서서 팔을 들어 올리면, 거울 속 나도 팔을 들어 올린다. 하지만 거울은 좌우를 바꾼다. 이처럼 대부분의 변환은 벡터의 방향을 바꿔버린다. 그런데 특별한 벡터들이 있다. 변환을 가해도 방향이 전혀 달라지지 않고, 오직 크기만 변하는 벡터들이다. 이 특별한 벡터가 바로 <b>고유벡터(eigenvector)</b>이고, 크기가 얼마나 변했는지를 나타내는 값이 <b>고유값(eigenvalue)</b>이다.</p>
+<p data-ke-size="size16">이 개념은 단순한 수학적 호기심을 넘어 매우 실용적이다. 구조물이 진동할 때의 공명 주파수, 구글의 페이지랭크 알고리즘, 얼굴 인식 기술, 양자역학에서 에너지 상태 계산까지 — 고유값과 고유벡터는 현대 과학기술의 근간을 이루는 핵심 도구다. 이번 글에서는 그 정의와 기하학적 의미를 직관적으로 이해해 보자.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 고유값과 고유벡터의 정의 ══ -->
+<h2 data-ke-size="size26">고유값과 고유벡터의 정의</h2>
+
+<h3 data-ke-size="size23">핵심 정의</h3>
+<p data-ke-size="size16">정방행렬 $A$에 대해, 다음 조건을 만족하는 영이 아닌 벡터 $\vec{v}$와 스칼라 $\lambda$가 존재할 때:</p>
+$$A\vec{v} = \lambda\vec{v}, \quad \vec{v} \neq \vec{0}$$
+<p data-ke-size="size16">이때 $\lambda$를 행렬 $A$의 <b>고유값(eigenvalue)</b>, $\vec{v}$를 $\lambda$에 대응하는 <b>고유벡터(eigenvector)</b>라고 한다.</p>
+<p data-ke-size="size16">이 식을 풀어보면, $A$라는 선형변환을 $\vec{v}$에 적용했을 때 결과가 $\vec{v}$의 상수배($\lambda$배)라는 뜻이다. 방향은 그대로(또는 정반대), 크기만 $|\lambda|$배 변한다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/6_1_EigenvectorVisualization.gif" alt="고유벡터 시각화 — 방향이 유지되는 벡터" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">왜 $\vec{v} \neq \vec{0}$ 조건이 필요한가?</h3>
+<p data-ke-size="size16">영벡터 $\vec{0}$는 항상 $A\vec{0} = \lambda\vec{0} = \vec{0}$를 만족하므로, 모든 $\lambda$에 대해 trivial하게 성립한다. 이는 아무런 정보를 주지 않으므로 배제한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 기하학적 의미 ══ -->
+<h2 data-ke-size="size26">기하학적 의미</h2>
+
+<h3 data-ke-size="size23">변환 후 같은 직선 위에 있는 벡터</h3>
+<p data-ke-size="size16">고유벡터의 기하학적 의미는 매우 직관적이다. 벡터 $\vec{v}$를 행렬 $A$로 변환했을 때, 결과 벡터 $A\vec{v}$가 원래 $\vec{v}$와 <b>같은 직선 위</b>에 놓인다는 것이다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$\lambda > 0$이면: 같은 방향으로 $\lambda$배 늘어남(또는 줄어듦)</li>
+<li>$\lambda < 0$이면: 반대 방향으로 $|\lambda|$배 변함</li>
+<li>$\lambda = 1$이면: 변환 후에도 벡터가 전혀 변하지 않음(고정점)</li>
+<li>$\lambda = 0$이면: 변환 후 영벡터가 됨(해당 방향이 "압축"됨)</li>
+</ul>
+$$\vec{v} \xrightarrow{A} \lambda\vec{v}$$
+
+<h3 data-ke-size="size23">고유공간(Eigenspace)</h3>
+<p data-ke-size="size16">하나의 고유값 $\lambda$에 대해 모든 고유벡터의 집합(영벡터 포함)은 부분공간을 이루며, 이를 <b>고유공간(eigenspace)</b>이라 한다:</p>
+$$E_\lambda = \ker(A - \lambda I) = \{\vec{v} : A\vec{v} = \lambda\vec{v}\}$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 예시: 대각행렬의 고유값 ══ -->
+<h2 data-ke-size="size26">예시: 대각행렬의 고유값</h2>
+
+<h3 data-ke-size="size23">대각행렬은 고유값과 고유벡터를 바로 읽을 수 있다</h3>
+<p data-ke-size="size16">대각행렬 $D = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix}$를 생각해 보자.</p>
+<p data-ke-size="size16">표준기저벡터 $\vec{e}_1 = \begin{pmatrix}1\\0\end{pmatrix}$, $\vec{e}_2 = \begin{pmatrix}0\\1\end{pmatrix}$에 대해:</p>
+$$D\vec{e}_1 = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}3\\0\end{pmatrix} = 3\vec{e}_1$$
+$$D\vec{e}_2 = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix}\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}0\\5\end{pmatrix} = 5\vec{e}_2$$
+<p data-ke-size="size16">따라서 대각행렬의 고유값은 <b>대각 성분</b>이고, 고유벡터는 <b>표준기저벡터</b>다.</p>
+<p data-ke-size="size16">일반적으로 $n \times n$ 대각행렬 $D = \text{diag}(d_1, d_2, \ldots, d_n)$의 고유값은 $\lambda_i = d_i$이다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/6_1_EigenvalueEquation.gif" alt="고유값 방정식 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">3×3 대각행렬 예시</h3>
+$$D = \begin{pmatrix} -2 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 4 \end{pmatrix}$$
+<p data-ke-size="size16">고유값: $\lambda_1 = -2$, $\lambda_2 = 1$, $\lambda_3 = 4$</p>
+<p data-ke-size="size16">대응 고유벡터:</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$\lambda_1 = -2$: $\vec{v}_1 = \begin{pmatrix}1\\0\\0\end{pmatrix}$ (x축 방향은 반대로 2배)</li>
+<li>$\lambda_2 = 1$: $\vec{v}_2 = \begin{pmatrix}0\\1\\0\end{pmatrix}$ (y축 방향은 변하지 않음)</li>
+<li>$\lambda_3 = 4$: $\vec{v}_3 = \begin{pmatrix}0\\0\\1\end{pmatrix}$ (z축 방향은 4배 늘어남)</li>
+</ul>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 고유벡터의 스칼라 배 ══ -->
+<h2 data-ke-size="size26">고유벡터의 스칼라 배</h2>
+<p data-ke-size="size16">고유벡터는 스칼라 배를 해도 여전히 고유벡터다. $\vec{v}$가 $\lambda$에 대한 고유벡터라면, $c\vec{v}$ ($c \neq 0$)도 같은 $\lambda$에 대한 고유벡터다:</p>
+$$A(c\vec{v}) = c(A\vec{v}) = c(\lambda\vec{v}) = \lambda(c\vec{v})$$
+<p data-ke-size="size16">그러므로 고유벡터를 구할 때는 보통 특정 방향을 대표하는 단위벡터 또는 간단한 정수 성분의 벡터로 표현한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명 / 공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고유벡터 정의</td>
+<td>$A\vec{v} = \lambda\vec{v}$, $\vec{v} \neq \vec{0}$</td>
+</tr>
+<tr>
+<td>고유값 $\lambda$</td>
+<td>변환 후 크기 변화 비율</td>
+</tr>
+<tr>
+<td>고유벡터 $\vec{v}$</td>
+<td>변환 후 방향이 유지되는 벡터</td>
+</tr>
+<tr>
+<td>기하학적 의미</td>
+<td>변환 후 같은 직선 위에 놓임</td>
+</tr>
+<tr>
+<td>$\lambda > 1$</td>
+<td>해당 방향으로 늘어남</td>
+</tr>
+<tr>
+<td>$0 < \lambda < 1$</td>
+<td>해당 방향으로 줄어듦</td>
+</tr>
+<tr>
+<td>$\lambda < 0$</td>
+<td>방향 반전 후 크기 변화</td>
+</tr>
+<tr>
+<td>$\lambda = 0$</td>
+<td>해당 방향이 영벡터로 압축</td>
+</tr>
+<tr>
+<td>대각행렬의 고유값</td>
+<td>대각 성분 그 자체</td>
+</tr>
+<tr>
+<td>고유공간</td>
+<td>$E_\lambda = \ker(A - \lambda I)$</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>특성방정식</b>을 이용해 임의의 행렬에서 고유값을 실제로 구하는 방법을 알아본다.</p>

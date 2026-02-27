@@ -1,0 +1,215 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "8.3 SVD의 응용 — 저랭크 근사, 이미지 압축, PCA, 의사역행렬",
+      "description": "특이값 분해(SVD)의 핵심 응용인 저랭크 근사, Eckart-Young 정리, 이미지 압축, PCA 연결, 무어-펜로즈 의사역행렬, 조건수를 Manim 애니메이션으로 설명합니다. 선형대수 완성 편.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "특이값 분해(SVD) (Chapter 8)",
+      "keywords": ["SVD 응용", "저랭크 근사", "이미지 압축", "PCA", "의사역행렬", "조건수", "선형대수"],
+      "timeRequired": "PT12M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.8 특이값 분해(SVD)", "item": "https://example.com/blog/chapter-8/" },
+        { "@type": "ListItem", "position": 4, "name": "8.3 SVD의 응용", "item": "https://example.com/blog/8-3-svd-applications" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">선형대수학을 공부하다 보면 "이게 실제로 어디에 쓰이나?" 하는 의문이 생길 수 있다. SVD(특이값 분해)에 관해서는 이 질문의 답이 넘쳐난다. 넷플릭스의 영화 추천 알고리즘, 의료 영상 압축, 구글의 검색 알고리즘, 얼굴 인식 시스템, GPS 오차 보정 — SVD는 이 모든 곳에서 핵심 역할을 한다.</p>
+<p data-ke-size="size16">이 글에서는 SVD의 주요 응용을 체계적으로 살펴본다. 저랭크 근사와 이미지 압축, PCA와의 연결, 의사역행렬과 최소제곱 해, 그리고 행렬의 조건수까지. 이 모든 것이 $A = U\Sigma V^T$라는 하나의 분해에서 자연스럽게 흘러나온다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 저랭크 근사 ══ -->
+<h2 data-ke-size="size26">저랭크 근사 (Low-rank Approximation)</h2>
+
+<h3 data-ke-size="size23">외적 전개 (Outer Product Expansion)</h3>
+<p data-ke-size="size16">SVD를 외적의 합으로 표현하면:</p>
+$$A = U\Sigma V^T = \sum_{i=1}^{r} \sigma_i \vec{u}_i \vec{v}_i^T$$
+<p data-ke-size="size16">각 항 $\sigma_i \vec{u}_i \vec{v}_i^T$는 <b>랭크-1 행렬</b>이다. 첫 번째 항이 $A$에서 가장 "중요한" 정보를, 이후 항들이 점차 덜 중요한 세부 정보를 담는다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_LowRankApproximation.gif" alt="저랭크 근사 — 특이값 개수에 따른 행렬 근사" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">Rank-$k$ 근사</h3>
+<p data-ke-size="size16">처음 $k$개의 항만 유지한 <b>Rank-$k$ 근사</b>:</p>
+$$A_k = \sum_{i=1}^{k} \sigma_i \vec{u}_i \vec{v}_i^T = U_k \Sigma_k V_k^T$$
+<p data-ke-size="size16">여기서 $U_k$는 $U$의 첫 $k$열, $\Sigma_k$는 $k \times k$ 대각행렬, $V_k$는 $V$의 첫 $k$열이다.</p>
+
+<h3 data-ke-size="size23">Eckart-Young 정리</h3>
+<p data-ke-size="size16"><b>$A_k$는 rank-$k$ 행렬 중 $A$에 가장 가까운 행렬이다.</b></p>
+$$\min_{\text{rank}(B) \leq k} \|A - B\|_2 = \|A - A_k\|_2 = \sigma_{k+1}$$
+$$\min_{\text{rank}(B) \leq k} \|A - B\|_F = \|A - A_k\|_F = \sqrt{\sigma_{k+1}^2 + \cdots + \sigma_r^2}$$
+<p data-ke-size="size16">이 정리는 SVD가 제공하는 근사가 이론적으로 최적임을 보장한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 이미지 압축 ══ -->
+<h2 data-ke-size="size26">이미지 압축</h2>
+
+<h3 data-ke-size="size23">그레이스케일 이미지 = 행렬</h3>
+<p data-ke-size="size16">$m \times n$ 픽셀 이미지는 $m \times n$ 행렬 $A$로 표현된다. 각 성분은 픽셀의 밝기값(0~255)이다.</p>
+<p data-ke-size="size16"><b>저장 비용 비교:</b></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>원본 행렬 $A$: $m \times n$개의 숫자</li>
+<li>Rank-$k$ 근사 $A_k$: $k(m + n + 1)$개의 숫자 ($U_k$, $\Sigma_k$, $V_k$ 저장)</li>
+</ul>
+<p data-ke-size="size16"><b>압축률</b> = $\dfrac{k(m+n+1)}{mn}$</p>
+<p data-ke-size="size16">$k \ll \min(m,n)$이면 압축률이 크게 떨어진다.</p>
+<p data-ke-size="size16"><b>예시:</b> $1000 \times 1000$ 이미지, $k = 50$</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>원본: $10^6$개 숫자</li>
+<li>압축: $50 \times 2001 \approx 100{,}050$개 숫자</li>
+<li>압축률 $\approx 10$배</li>
+</ul>
+<p data-ke-size="size16">큰 특이값들이 전체 정보의 대부분을 담고 있기 때문에, $k$를 적절히 선택하면 시각적으로 거의 손실 없이 압축할 수 있다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_SVDApplications.gif" alt="SVD 응용 — PCA, 이미지 압축, 의사역행렬 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ PCA와의 연결 ══ -->
+<h2 data-ke-size="size26">PCA와의 연결</h2>
+
+<h3 data-ke-size="size23">주성분 분석 (Principal Component Analysis)</h3>
+<p data-ke-size="size16">데이터 행렬 $X \in \mathbb{R}^{m \times n}$이 있고, 각 행이 하나의 데이터 점, 각 열이 하나의 특성(feature)이라 하자. 데이터의 <b>공분산 행렬</b>은:</p>
+$$C = \frac{1}{m-1} X^T X \quad (\text{데이터가 중심화된 경우})$$
+<p data-ke-size="size16">SVD: $X = U\Sigma V^T$로 분해하면:</p>
+$$C = \frac{1}{m-1}(V\Sigma U^T)(U\Sigma V^T) = \frac{1}{m-1}V\Sigma^2 V^T$$
+<p data-ke-size="size16">따라서:</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><b>주성분 방향</b> = $X$의 우특이벡터 $\vec{v}_1, \vec{v}_2, \ldots$ (분산이 큰 방향 순)</li>
+<li><b>주성분의 분산</b> = $\dfrac{\sigma_i^2}{m-1}$</li>
+<li><b>$k$차원으로 차원 축소</b>: $X \approx U_k\Sigma_k V_k^T$, 즉 $XV_k$를 새 좌표로 사용</li>
+</ul>
+<p data-ke-size="size16"><b>설명된 분산 비율 (Explained Variance Ratio):</b></p>
+$$\text{EVR}_k = \frac{\sum_{i=1}^k \sigma_i^2}{\sum_{i=1}^r \sigma_i^2}$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 의사역행렬 ══ -->
+<h2 data-ke-size="size26">의사역행렬 (Pseudoinverse)</h2>
+
+<h3 data-ke-size="size23">$A^+ = V\Sigma^+ U^T$</h3>
+<p data-ke-size="size16">역행렬이 존재하지 않는 행렬(직사각 행렬, 또는 특이 정방행렬)에 대해 <b>무어-펜로즈 의사역행렬(Moore-Penrose pseudoinverse)</b>을 정의한다:</p>
+$$A^+ = V\Sigma^+ U^T$$
+<p data-ke-size="size16">$\Sigma^+$는 $\Sigma$의 0이 아닌 대각 성분의 역수를 취하고 전치한 행렬 (0은 그대로 0):</p>
+$$\Sigma^+ = \begin{pmatrix} 1/\sigma_1 & & \\ & \ddots & \\ & & 1/\sigma_r \end{pmatrix}^T$$
+
+<h3 data-ke-size="size23">의사역행렬의 성질</h3>
+<p data-ke-size="size16">$A^+$는 다음 네 가지 무어-펜로즈 조건을 만족한다:</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>$AA^+A = A$</li>
+<li>$A^+AA^+ = A^+$</li>
+<li>$(AA^+)^T = AA^+$</li>
+<li>$(A^+A)^T = A^+A$</li>
+</ol>
+
+<h3 data-ke-size="size23">최소제곱 해와 의사역행렬</h3>
+<p data-ke-size="size16">$A\vec{x} = \vec{b}$의 최소제곱 해 중 <b>최소 노름(minimum norm)</b>을 갖는 해는:</p>
+$$\hat{x} = A^+\vec{b} = V\Sigma^+U^T\vec{b}$$
+<p data-ke-size="size16">이는 SVD를 이용해 수치적으로 안정적으로 계산할 수 있다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 조건수 ══ -->
+<h2 data-ke-size="size26">조건수 (Condition Number)</h2>
+
+<h3 data-ke-size="size23">수치 안정성의 척도</h3>
+<p data-ke-size="size16">행렬 $A$의 <b>조건수(condition number)</b>:</p>
+$$\kappa(A) = \|A\|_2 \cdot \|A^{-1}\|_2 = \frac{\sigma_{\max}}{\sigma_{\min}} = \frac{\sigma_1}{\sigma_r}$$
+<p data-ke-size="size16">조건수는 입력의 작은 오차가 해에 얼마나 증폭되는지를 나타낸다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$\kappa(A) \approx 1$: 수치적으로 안정적(well-conditioned)</li>
+<li>$\kappa(A) \gg 1$: 수치적으로 불안정(ill-conditioned)</li>
+</ul>
+<p data-ke-size="size16"><b>예시:</b> $\kappa(A) = 10^{10}$이면, 입력 데이터에 $10^{-16}$ (부동소수점 한계) 오차가 있을 때 해에는 $10^{-6}$ 오차가 발생할 수 있다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ SVD 응용 요약표 ══ -->
+<h2 data-ke-size="size26">SVD 응용 요약표</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>응용 분야</th>
+<th>SVD 활용 방법</th>
+<th>핵심 공식/개념</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>저랭크 근사</td>
+<td>상위 $k$개 특이값/벡터만 유지</td>
+<td>$A_k = \sum_{i=1}^k \sigma_i\vec{u}_i\vec{v}_i^T$</td>
+</tr>
+<tr>
+<td>Eckart-Young 정리</td>
+<td>최적 Rank-$k$ 근사 보장</td>
+<td>$\min_{\text{rank}(B)\leq k}\|A-B\|_F = \sqrt{\sum_{i>k}\sigma_i^2}$</td>
+</tr>
+<tr>
+<td>이미지 압축</td>
+<td>Rank-$k$ 근사로 저장</td>
+<td>저장 비용 $k(m+n+1)$</td>
+</tr>
+<tr>
+<td>PCA</td>
+<td>주성분 = 우특이벡터</td>
+<td>$X = U\Sigma V^T$, 주성분: $V$의 열</td>
+</tr>
+<tr>
+<td>차원 축소</td>
+<td>상위 $k$개 주성분으로 투영</td>
+<td>$XV_k$ = 축소된 좌표</td>
+</tr>
+<tr>
+<td>의사역행렬</td>
+<td>최소노름 최소제곱 해</td>
+<td>$A^+ = V\Sigma^+U^T$</td>
+</tr>
+<tr>
+<td>최소제곱 해</td>
+<td>수치 안정적 계산</td>
+<td>$\hat{x} = A^+\vec{b}$</td>
+</tr>
+<tr>
+<td>조건수</td>
+<td>수치 안정성 판단</td>
+<td>$\kappa(A) = \sigma_1/\sigma_r$</td>
+</tr>
+<tr>
+<td>랭크 판별</td>
+<td>영이 아닌 특이값 수</td>
+<td>$\text{rank}(A) = r$</td>
+</tr>
+<tr>
+<td>행렬 노름</td>
+<td>프로베니우스/스펙트럴</td>
+<td>$\|A\|_F = \sqrt{\sum\sigma_i^2}$, $\|A\|_2 = \sigma_1$</td>
+</tr>
+</tbody>
+</table>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 마무리: 선형대수의 완성 ══ -->
+<h2 data-ke-size="size26">마무리: 선형대수의 완성</h2>
+<p data-ke-size="size16">선형대수를 처음 배울 때는 벡터, 행렬, 행렬식, 연립방정식 풀기처럼 계산 위주의 내용이 주를 이룬다. 하지만 고유값과 고유벡터, 직교성, 그리고 SVD에 이르면 선형대수의 진정한 힘이 드러난다.</p>
+<p data-ke-size="size16">SVD는 이 여정의 정점이다. 어떤 행렬도 $A = U\Sigma V^T$로 분해되고, 이 분해는 행렬의 모든 구조적 정보 — 랭크, 차원, 중요한 방향, 수치 안정성 — 를 한눈에 보여준다. 데이터 압축, 잡음 제거, 차원 축소, 최적화, 머신러닝의 기초까지, SVD는 한 번 배우면 어디서든 마주치는 도구다.</p>
+<p data-ke-size="size16">"모든 선형변환은 회전-스트레치-회전이다." 이 단순한 사실이 선형대수학이 그토록 강력하고 아름다운 이유다.</p>
+<p data-ke-size="size16">지금까지 고유값과 고유벡터, 직교성, 그람-슈미트 과정, 최소제곱법, 특이값 분해까지 선형대수의 핵심 주제들을 함께 살펴보았다. 이 개념들은 서로 긴밀하게 연결되어 있으며, 현대 수학과 공학의 언어를 이루고 있다.</p>

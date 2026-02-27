@@ -1,0 +1,158 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "2.3 외적 (Cross Product) — 두 벡터로 수직 벡터 만들기",
+      "description": "외적의 행렬식 정의, 기하학적 의미(평행사변형 넓이), 반교환법칙 등 성질, 법선벡터·토크·부피 계산 활용을 Manim 애니메이션과 함께 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "내적과 외적 (Chapter 2)",
+      "keywords": ["외적", "cross product", "법선벡터", "토크", "오른손 법칙", "평행사변형 넓이", "선형대수"],
+      "timeRequired": "PT10M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.2 내적과 외적", "item": "https://example.com/blog/chapter-2/" },
+        { "@type": "ListItem", "position": 4, "name": "2.3 외적", "item": "https://example.com/blog/2-3-cross-product" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">나사를 조일 때를 생각해 보자. 드라이버를 손으로 잡고 힘을 가해 회전시키면 나사가 조여진다. 이때 손이 가하는 힘의 방향과 드라이버 축의 방향, 그리고 그 결과로 나타나는 회전 효과의 방향은 서로 수직 관계에 있다. 오른손을 펴서 네 손가락이 첫 번째 벡터에서 두 번째 벡터 쪽으로 감기도록 하면, 엄지손가락이 가리키는 방향이 바로 외적의 방향이다. 이것이 <b>오른손 법칙(Right-Hand Rule)</b>이다.</p>
+<p data-ke-size="size16">내적이 두 벡터로부터 스칼라를 만들어냈다면, <b>외적(Cross Product)</b>은 두 벡터로부터 새로운 <b>벡터</b>를 만들어낸다. 그 벡터는 입력한 두 벡터 모두에 수직이다. 이 특성 덕분에 외적은 물리의 토크, 컴퓨터 그래픽스의 법선벡터 계산 등 3차원 공간 전반에서 필수 도구로 쓰인다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 외적의 정의 ══ -->
+<h2 data-ke-size="size26">외적의 정의</h2>
+
+<h3 data-ke-size="size23">행렬식을 이용한 정의</h3>
+<p data-ke-size="size16">3차원 벡터 $\vec{u} = (u_1, u_2, u_3)$와 $\vec{v} = (v_1, v_2, v_3)$의 외적은 다음 행렬식으로 정의한다.</p>
+$$\vec{u} \times \vec{v} = \det\begin{pmatrix} \hat{i} & \hat{j} & \hat{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{pmatrix}$$
+<p data-ke-size="size16">이것을 첫 번째 행에 대해 전개하면:</p>
+$$\vec{u} \times \vec{v} = \hat{i}(u_2 v_3 - u_3 v_2) - \hat{j}(u_1 v_3 - u_3 v_1) + \hat{k}(u_1 v_2 - u_2 v_1)$$
+<p data-ke-size="size16">성분으로 정리하면:</p>
+$$\vec{u} \times \vec{v} = (u_2 v_3 - u_3 v_2,\ u_3 v_1 - u_1 v_3,\ u_1 v_2 - u_2 v_1)$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductFormula.gif" alt="외적 공식 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">예시</h3>
+<p data-ke-size="size16">$\vec{u} = (1, 2, 3)$, $\vec{v} = (4, 5, 6)$일 때:</p>
+$$\vec{u} \times \vec{v} = (2 \cdot 6 - 3 \cdot 5,\ 3 \cdot 4 - 1 \cdot 6,\ 1 \cdot 5 - 2 \cdot 4) = (12-15,\ 12-6,\ 5-8) = (-3, 6, -3)$$
+<p data-ke-size="size16">결과 벡터가 $\vec{u}$와 $\vec{v}$ 모두에 수직인지 내적으로 확인:</p>
+$$(-3,6,-3) \cdot (1,2,3) = -3 + 12 - 9 = 0\ \checkmark$$
+$$(-3,6,-3) \cdot (4,5,6) = -12 + 30 - 18 = 0\ \checkmark$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 외적의 크기 ══ -->
+<h2 data-ke-size="size26">외적의 크기</h2>
+
+<h3 data-ke-size="size23">기하학적 의미 — 평행사변형의 넓이</h3>
+$$\|\vec{u} \times \vec{v}\| = \|\vec{u}\| \|\vec{v}\| \sin\theta$$
+<p data-ke-size="size16">여기서 $\theta$는 두 벡터 사이의 각도 ($0 \leq \theta \leq \pi$)다. 이 값은 $\vec{u}$와 $\vec{v}$가 이루는 <b>평행사변형의 넓이</b>와 같다.</p>
+$$\text{평행사변형의 넓이} = \|\vec{u} \times \vec{v}\|$$
+<p data-ke-size="size16">삼각형의 넓이는 그 절반이다.</p>
+$$\text{삼각형의 넓이} = \frac{1}{2}\|\vec{u} \times \vec{v}\|$$
+<p data-ke-size="size16">두 벡터가 평행하면 $\sin\theta = 0$이 되어 외적이 영벡터가 된다. 반대로 두 벡터가 직교하면 $\sin 90° = 1$로 외적의 크기가 최대가 된다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductArea.gif" alt="외적과 평행사변형 넓이 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 외적의 성질 ══ -->
+<h2 data-ke-size="size26">외적의 성질</h2>
+
+<h3 data-ke-size="size23">반교환법칙 (Anti-commutativity)</h3>
+$$\vec{v} \times \vec{u} = -(\vec{u} \times \vec{v})$$
+<p data-ke-size="size16">순서를 바꾸면 방향이 반대인 벡터가 나온다. 이것이 외적이 교환법칙을 따르지 않는 이유다.</p>
+
+<h3 data-ke-size="size23">자기 자신과의 외적</h3>
+$$\vec{u} \times \vec{u} = \vec{0}$$
+<p data-ke-size="size16">$\sin 0° = 0$이므로 자기 자신과의 외적은 항상 영벡터다.</p>
+
+<h3 data-ke-size="size23">분배법칙</h3>
+$$\vec{u} \times (\vec{v} + \vec{w}) = \vec{u} \times \vec{v} + \vec{u} \times \vec{w}$$
+
+<h3 data-ke-size="size23">스칼라 결합</h3>
+$$(c\vec{u}) \times \vec{v} = c(\vec{u} \times \vec{v}) = \vec{u} \times (c\vec{v})$$
+
+<h3 data-ke-size="size23">표준 기저 벡터들의 외적</h3>
+$$\hat{i} \times \hat{j} = \hat{k}, \quad \hat{j} \times \hat{k} = \hat{i}, \quad \hat{k} \times \hat{i} = \hat{j}$$
+<p data-ke-size="size16">순환 순서를 거스르면 부호가 바뀐다: $\hat{j} \times \hat{i} = -\hat{k}$</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 활용 ══ -->
+<h2 data-ke-size="size26">활용</h2>
+
+<h3 data-ke-size="size23">법선벡터 계산</h3>
+<p data-ke-size="size16">3D 공간에서 평면을 정의하는 두 벡터 $\vec{u}$, $\vec{v}$가 있을 때, 그 평면에 수직인 <b>법선벡터(Normal Vector)</b>는:</p>
+$$\vec{n} = \vec{u} \times \vec{v}$$
+<p data-ke-size="size16">컴퓨터 그래픽스에서 조명 계산, 충돌 감지 등에 필수적으로 사용된다.</p>
+
+<h3 data-ke-size="size23">토크 (Torque)</h3>
+<p data-ke-size="size16">물리에서 토크(회전력) $\vec{\tau}$는 위치벡터 $\vec{r}$과 힘 $\vec{F}$의 외적이다.</p>
+$$\vec{\tau} = \vec{r} \times \vec{F}$$
+<p data-ke-size="size16">토크의 크기는 $\|\vec{r}\|\|\vec{F}\|\sin\theta$이며, 방향은 오른손 법칙을 따른다.</p>
+
+<h3 data-ke-size="size23">부피 계산 (스칼라 삼중적)</h3>
+<p data-ke-size="size16">세 벡터 $\vec{u}$, $\vec{v}$, $\vec{w}$가 만드는 평행육면체의 부피는 스칼라 삼중적으로 계산한다.</p>
+$$V = |\vec{u} \cdot (\vec{v} \times \vec{w})|$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명/공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>외적 정의</td>
+<td>$\vec{u} \times \vec{v} = \det\begin{pmatrix}\hat{i}&\hat{j}&\hat{k}\\u_1&u_2&u_3\\v_1&v_2&v_3\end{pmatrix}$</td>
+</tr>
+<tr>
+<td>크기</td>
+<td>$\|\vec{u} \times \vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta$</td>
+</tr>
+<tr>
+<td>방향</td>
+<td>두 입력 벡터 모두에 수직 (오른손 법칙)</td>
+</tr>
+<tr>
+<td>반교환법칙</td>
+<td>$\vec{v} \times \vec{u} = -\vec{u} \times \vec{v}$</td>
+</tr>
+<tr>
+<td>평행사변형 넓이</td>
+<td>$\|\vec{u} \times \vec{v}\|$</td>
+</tr>
+<tr>
+<td>삼각형 넓이</td>
+<td>$\frac{1}{2}\|\vec{u} \times \vec{v}\|$</td>
+</tr>
+<tr>
+<td>주요 활용</td>
+<td>법선벡터, 토크, 넓이/부피 계산</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>행렬(Matrix)</b>을 알아본다. 여러 벡터와 방정식을 하나의 표 형태로 묶어 다루는 강력한 도구를 소개한다.</p>

@@ -1,0 +1,163 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "1.3 스칼라 곱 (Scalar Multiplication) — 크기와 방향을 조절하는 연산",
+      "description": "스칼라 곱의 정의와 기하학적 의미, 분배법칙·결합법칙 등 성질, 그리고 선형결합까지 Manim 애니메이션으로 시각적으로 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "벡터 (Chapter 1)",
+      "keywords": ["스칼라 곱", "scalar multiplication", "선형결합", "벡터 크기", "방향 반전", "선형대수"],
+      "timeRequired": "PT8M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.1 벡터", "item": "https://example.com/blog/chapter-1/" },
+        { "@type": "ListItem", "position": 4, "name": "1.3 스칼라 곱", "item": "https://example.com/blog/1-3-scalar-multiplication" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">자전거를 타고 동쪽으로 $10\text{km/h}$ 로 이동 중이라고 하자. 속도를 <b>2배</b>로 높이면 동쪽으로 $20\text{km/h}$, <b>절반</b>으로 줄이면 동쪽으로 $5\text{km/h}$ 가 된다. 방향은 그대로이고 크기만 바뀐다. 반대로 브레이크를 걸어 <b>역방향</b>으로 같은 힘을 가하면 서쪽으로 $10\text{km/h}$ 가 된다.</p>
+<p data-ke-size="size16">이처럼 벡터에 <b>스칼라(숫자)를 곱해 크기와 방향을 조절하는 연산</b>이 바로 스칼라 곱이다. 덧셈과 함께 벡터 대수의 두 기둥을 이루는 핵심 연산이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 스칼라 곱의 정의 ══ -->
+<h2 data-ke-size="size26">스칼라 곱의 정의</h2>
+<p data-ke-size="size16">스칼라 $c \in \mathbb{R}$ 와 벡터 $\vec{v} = (v_1, v_2)$ 에 대해 스칼라 곱은 <b>각 성분에 스칼라를 곱</b>하는 것으로 정의한다:</p>
+$$c\vec{v} = (cv_1,\ cv_2)$$
+<p data-ke-size="size16">3차원으로 확장하면:</p>
+$$c\vec{v} = (cv_1,\ cv_2,\ cv_3)$$
+<p data-ke-size="size16"><b>예시:</b> $c = 3$, $\vec{v} = (2, -1)$ 일 때</p>
+$$3\vec{v} = (3 \cdot 2,\ 3 \cdot (-1)) = (6, -3)$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_3_ScalarMultiplication.gif" alt="스칼라 곱 시각화" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 기하학적 의미 ══ -->
+<h2 data-ke-size="size26">기하학적 의미</h2>
+<p data-ke-size="size16">스칼라 값 $c$ 에 따라 벡터가 어떻게 변하는지 기하학적으로 살펴보자.</p>
+
+<h3 data-ke-size="size23">$c > 1$ : 확대 (같은 방향)</h3>
+$$c = 2,\quad \vec{v} = (1, 2) \Rightarrow 2\vec{v} = (2, 4)$$
+<p data-ke-size="size16">벡터의 방향은 유지되고, 크기가 $c$ 배로 <b>늘어난다</b>.</p>
+
+<h3 data-ke-size="size23">$0 &lt; c &lt; 1$ : 축소 (같은 방향)</h3>
+$$c = \frac{1}{2},\quad \vec{v} = (4, 2) \Rightarrow \frac{1}{2}\vec{v} = (2, 1)$$
+<p data-ke-size="size16">벡터의 방향은 유지되고, 크기가 $c$ 배로 <b>줄어든다</b>.</p>
+
+<h3 data-ke-size="size23">$c &lt; 0$ : 방향 반전</h3>
+$$c = -1,\quad \vec{v} = (3, 1) \Rightarrow -\vec{v} = (-3, -1)$$
+<p data-ke-size="size16">크기는 $|c|$ 배가 되고, 방향이 <b>정반대</b>로 바뀐다. 특히 $c = -1$ 이면 역벡터가 된다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_3_NegativeScalar.gif" alt="음수 스칼라 곱 방향 반전 시각화" style="display:block; margin:1.5rem auto;">
+
+<h3 data-ke-size="size23">$c = 0$ : 영벡터</h3>
+$$0 \cdot \vec{v} = (0, 0) = \vec{0}$$
+<p data-ke-size="size16">어떤 벡터에 0을 곱하면 <b>영벡터</b>가 된다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 스칼라 곱의 성질 ══ -->
+<h2 data-ke-size="size26">스칼라 곱의 성질</h2>
+<p data-ke-size="size16">스칼라 $c, d \in \mathbb{R}$ 와 벡터 $\vec{u}, \vec{v}$ 에 대해 다음 성질이 성립한다.</p>
+
+<h3 data-ke-size="size23">스칼라에 대한 분배법칙</h3>
+$$(c + d)\vec{v} = c\vec{v} + d\vec{v}$$
+<p data-ke-size="size16"><b>예시:</b> $(2 + 3)\vec{v} = 5\vec{v} = 2\vec{v} + 3\vec{v}$</p>
+
+<h3 data-ke-size="size23">벡터에 대한 분배법칙</h3>
+$$c(\vec{u} + \vec{v}) = c\vec{u} + c\vec{v}$$
+<p data-ke-size="size16">스칼라 곱은 벡터 덧셈에 대해 <b>분배</b>된다.</p>
+
+<h3 data-ke-size="size23">결합법칙</h3>
+$$(cd)\vec{v} = c(d\vec{v})$$
+<p data-ke-size="size16">두 스칼라를 먼저 곱한 뒤 벡터에 적용하는 것과, 순차적으로 적용하는 것의 결과가 같다.</p>
+
+<h3 data-ke-size="size23">항등원</h3>
+$$1 \cdot \vec{v} = \vec{v}$$
+<p data-ke-size="size16">스칼라 $1$ 은 벡터를 변화시키지 않는 <b>스칼라 곱의 항등원</b>이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 선형결합 ══ -->
+<h2 data-ke-size="size26">선형결합 (Linear Combination)</h2>
+<p data-ke-size="size16">스칼라 곱과 벡터 덧셈을 결합하면 <b>선형결합(linear combination)</b> 이라는 강력한 개념이 등장한다.</p>
+<p data-ke-size="size16">벡터 $\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_n$ 과 스칼라 $c_1, c_2, \ldots, c_n$ 에 대해, 선형결합은 다음과 같이 정의된다:</p>
+$$c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_n\vec{v}_n$$
+<p data-ke-size="size16"><b>예시:</b> $\vec{v}_1 = (1, 0)$, $\vec{v}_2 = (0, 1)$, $c_1 = 3$, $c_2 = 2$ 일 때</p>
+$$3(1, 0) + 2(0, 1) = (3, 0) + (0, 2) = (3, 2)$$
+<p data-ke-size="size16">선형결합은 선형대수학 전반에서 등장하는 핵심 아이디어다. 어떤 벡터를 다른 벡터들의 선형결합으로 표현할 수 있는지, 표현할 수 있다면 어떤 계수로 표현되는지가 벡터 공간의 구조를 결정한다.</p>
+<p data-ke-size="size16">특히, 표준 단위벡터 $\hat{i} = (1, 0)$, $\hat{j} = (0, 1)$ 를 사용하면 2차원 평면 위의 <b>모든</b> 벡터를 선형결합으로 나타낼 수 있다:</p>
+$$\vec{v} = (v_1, v_2) = v_1\hat{i} + v_2\hat{j}$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>스칼라 곱 정의</td>
+<td>$c\vec{v} = (cv_1,\ cv_2)$, 각 성분에 스칼라를 곱함</td>
+</tr>
+<tr>
+<td>$c > 1$</td>
+<td>같은 방향으로 크기 확대</td>
+</tr>
+<tr>
+<td>$0 &lt; c &lt; 1$</td>
+<td>같은 방향으로 크기 축소</td>
+</tr>
+<tr>
+<td>$c &lt; 0$</td>
+<td>방향 반전 (크기는 $|c|$ 배)</td>
+</tr>
+<tr>
+<td>$c = 0$</td>
+<td>결과는 영벡터 $\vec{0}$</td>
+</tr>
+<tr>
+<td>분배법칙 (스칼라)</td>
+<td>$(c+d)\vec{v} = c\vec{v} + d\vec{v}$</td>
+</tr>
+<tr>
+<td>분배법칙 (벡터)</td>
+<td>$c(\vec{u}+\vec{v}) = c\vec{u} + c\vec{v}$</td>
+</tr>
+<tr>
+<td>결합법칙</td>
+<td>$(cd)\vec{v} = c(d\vec{v})$</td>
+</tr>
+<tr>
+<td>항등원</td>
+<td>$1 \cdot \vec{v} = \vec{v}$</td>
+</tr>
+<tr>
+<td>선형결합</td>
+<td>$c_1\vec{v}_1 + c_2\vec{v}_2 + \cdots + c_n\vec{v}_n$</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <b>벡터의 크기와 단위벡터</b> 를 알아본다.</p>
