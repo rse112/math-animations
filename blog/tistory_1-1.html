@@ -1,0 +1,154 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "1.1 벡터란 무엇인가 — 크기와 방향의 수학",
+      "description": "벡터(vector)란 크기와 방향을 함께 가지는 양입니다. 스칼라와의 차이, 위치벡터·자유벡터 개념, 2D·3D 벡터 표현법을 Manim 애니메이션과 함께 직관적으로 설명합니다.",
+      "datePublished": "2026-02-27T00:00:00+09:00",
+      "dateModified": "2026-02-27T00:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "벡터 (Chapter 1)",
+      "keywords": ["벡터", "스칼라", "위치벡터", "자유벡터", "선형대수"],
+      "timeRequired": "PT8M"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Ch.1 벡터", "item": "https://example.com/blog/chapter-1/" },
+        { "@type": "ListItem", "position": 4, "name": "1.1 벡터란 무엇인가", "item": "https://example.com/blog/1-1-what-is-vector" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">길을 설명할 때 "500m 걸어가세요"라고만 하면 충분할까? 아마 "북쪽으로 500m 걸어가세요"라고 해야 제대로 도착할 수 있을 것이다. 여기서 "500m"는 <b>크기(magnitude)</b>만 있는 정보이고, "북쪽으로 500m"는 <b>크기와 방향(direction)</b>을 모두 담고 있는 정보다.</p>
+<p data-ke-size="size16">수학에서도 이 구분은 중요하다. 크기만 가진 값을 <b>스칼라(scalar)</b>, 크기와 방향을 함께 가진 값을 <b>벡터(vector)</b>라고 부른다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 벡터의 정의 ══ -->
+<h2 data-ke-size="size26">벡터의 정의</h2>
+
+<h3 data-ke-size="size23">스칼라(Scalar)</h3>
+<p data-ke-size="size16">스칼라는 <b>크기만으로 완전히 표현되는 양</b>이다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>온도: $37\,°\text{C}$</li>
+<li>질량: $5\,\text{kg}$</li>
+<li>시간: $3\,\text{s}$</li>
+</ul>
+<p data-ke-size="size16">하나의 숫자로 충분히 설명할 수 있다.</p>
+
+<h3 data-ke-size="size23">벡터(Vector)</h3>
+<p data-ke-size="size16">벡터는 <b>크기와 방향을 함께 가지는 양</b>이다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>속도: 시속 $60\,\text{km}$, <b>동쪽</b> 방향</li>
+<li>힘: $10\,\text{N}$, <b>위</b> 방향</li>
+<li>변위: $3\,\text{m}$, <b>북동</b> 방향</li>
+</ul>
+
+[##_Image|kage@kKpyX/dJMcaaqReCR/AAAAAAAAAAAAAAAAAAAAAFpZx9u3FsGEYU8B-wqnM-fMnuHtRRoPhb_Mr_DG-wgi/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1772290799&allow_ip=&allow_referer=&signature=3fcz0FFvawRAQubTNMdrOIDFbyM%3D|CDM|1.3|{"originWidth":480,"originHeight":270,"style":"alignCenter","caption":"스칼라와 벡터 비교","filename":"1_1_ScalarVsVector.gif"}_##]
+
+<h3 data-ke-size="size23">표기법</h3>
+<p data-ke-size="size16">벡터는 보통 다음과 같이 표기한다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>화살표 표기: $\vec{v}$</li>
+<li>볼드체 표기: $\mathbf{v}$</li>
+<li>성분 표기: $(v_1,\,v_2)$ 또는 $\begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$</li>
+</ul>
+<p data-ke-size="size16">벡터의 크기(길이)는 $|\vec{v}|$ 또는 $\|\vec{v}\|$로 표기한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 벡터의 표현 ══ -->
+<h2 data-ke-size="size26">벡터의 표현</h2>
+
+<h3 data-ke-size="size23">좌표계에서의 벡터</h3>
+<p data-ke-size="size16">벡터를 구체적으로 다루려면 <b>좌표계(coordinate system)</b>가 필요하다. 2차원 좌표평면에서 벡터는 <b>시점(initial point)</b>에서 <b>종점(terminal point)</b>으로 향하는 화살표로 표현된다.</p>
+<p data-ke-size="size16">예를 들어, 점 $A(1,\,1)$에서 점 $B(4,\,3)$으로 향하는 벡터 $\vec{AB}$는:</p>
+$$\vec{AB} = B - A = (4-1,\ 3-1) = (3,\,2)$$
+
+[##_Image|kage@c7vGBj/dJMcah4Al0X/AAAAAAAAAAAAAAAAAAAAACpQWIiCee89B7BJ6xnIUXlAE_sOmRafkeoIn3PawLQp/img.gif?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1772290799&allow_ip=&allow_referer=&signature=zW07EzVgU6kj2L%2F0aNLuHSprDyU%3D|CDM|1.3|{"originWidth":480,"originHeight":270,"style":"alignCenter","caption":"좌표계에서의 벡터","filename":"1_1_VectorInCoordinate.gif"}_##]
+
+<h3 data-ke-size="size23">위치벡터(Position Vector)</h3>
+<p data-ke-size="size16"><b>위치벡터</b>란 시점이 원점 $O(0,\,0)$인 벡터를 말한다. 점 $P(3,\,2)$의 위치벡터는:</p>
+$$\vec{OP} = (3,\,2)$$
+<p data-ke-size="size16">위치벡터를 사용하면 벡터를 좌표(숫자 쌍)로 간결하게 표현할 수 있다.</p>
+
+<!-- ★ 1_1_VectorPosition.gif 업로드 후 아래에 삽입 -->
+<!-- [##_Image|...|CDM|1.3|{"style":"alignCenter","caption":"위치벡터","filename":"1_1_VectorPosition.gif"}_##] -->
+
+<h3 data-ke-size="size23">자유벡터(Free Vector)</h3>
+<p data-ke-size="size16">벡터는 기본적으로 <b>자유벡터</b>다. 즉, <b>시작 위치에 관계없이 크기와 방향이 같으면 같은 벡터</b>로 취급한다. 원점에서 출발하든, 점 $(2,\,3)$에서 출발하든, 방향과 크기가 동일하면 동일한 벡터다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 2D / 3D 벡터 ══ -->
+<h2 data-ke-size="size26">2D / 3D 벡터</h2>
+
+<h3 data-ke-size="size23">2D 벡터</h3>
+<p data-ke-size="size16">2차원 벡터는 두 개의 성분으로 구성된다.</p>
+$$\vec{v} = (v_1,\,v_2)$$
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>$v_1$: $x$축 방향 성분</li>
+<li>$v_2$: $y$축 방향 성분</li>
+</ul>
+<p data-ke-size="size16"><b>예시:</b> $\vec{v} = (3,\,2)$는 $x$축 방향으로 3, $y$축 방향으로 2만큼 이동하는 벡터다.</p>
+<p data-ke-size="size16">벡터의 크기:</p>
+$$|\vec{v}| = \sqrt{v_1^2 + v_2^2} = \sqrt{9 + 4} = \sqrt{13}$$
+
+<h3 data-ke-size="size23">3D 벡터</h3>
+<p data-ke-size="size16">3차원 벡터는 세 개의 성분으로 확장된다.</p>
+$$\vec{w} = (w_1,\,w_2,\,w_3)$$
+<p data-ke-size="size16"><b>예시:</b> $\vec{w} = (1,\,2,\,3)$</p>
+<p data-ke-size="size16">벡터의 크기:</p>
+$$|\vec{w}| = \sqrt{w_1^2 + w_2^2 + w_3^2} = \sqrt{1 + 4 + 9} = \sqrt{14}$$
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>스칼라(Scalar)</td>
+<td>크기만 가지는 양 (예: 온도, 질량)</td>
+</tr>
+<tr>
+<td>벡터(Vector)</td>
+<td>크기 + 방향을 가지는 양 (예: 속도, 힘)</td>
+</tr>
+<tr>
+<td>위치벡터(Position Vector)</td>
+<td>원점에서 출발하는 벡터</td>
+</tr>
+<tr>
+<td>자유벡터(Free Vector)</td>
+<td>시작점에 관계없이 크기·방향이 같으면 동일</td>
+</tr>
+<tr>
+<td>벡터 표기</td>
+<td>$\vec{v} = (v_1,\,v_2)$ 또는 $\mathbf{v}$</td>
+</tr>
+<tr>
+<td>벡터의 크기</td>
+<td>$\|\vec{v}\| = \sqrt{v_1^2 + v_2^2}$</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 벡터의 <b>덧셈과 뺄셈, 스칼라 곱</b>을 알아본다.</p>
