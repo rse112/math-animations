@@ -8,20 +8,50 @@
       "description": "외적의 행렬식 정의, 기하학적 의미(평행사변형 넓이), 반교환법칙 등 성질, 법선벡터·토크·부피 계산 활용을 Manim 애니메이션과 함께 설명합니다.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "내적과 외적 (Chapter 2)",
-      "keywords": ["외적", "cross product", "법선벡터", "토크", "오른손 법칙", "평행사변형 넓이", "선형대수"],
-      "timeRequired": "PT10M"
+      "keywords": [
+        "외적",
+        "cross product",
+        "법선벡터",
+        "토크",
+        "오른손 법칙",
+        "평행사변형 넓이",
+        "선형대수"
+      ],
+      "timeRequired": "PT10M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductFormula.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.2 내적과 외적", "item": "https://example.com/blog/chapter-2/" },
-        { "@type": "ListItem", "position": 4, "name": "2.3 외적", "item": "https://example.com/blog/2-3-cross-product" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "2.3 외적",
+          "item": "https://gunbungmath.tistory.com/39"
+        }
       ]
     }
   ]
@@ -46,7 +76,7 @@ $$\vec{u} \times \vec{v} = \hat{i}(u_2 v_3 - u_3 v_2) - \hat{j}(u_1 v_3 - u_3 v_
 <p data-ke-size="size16">성분으로 정리하면:</p>
 $$\vec{u} \times \vec{v} = (u_2 v_3 - u_3 v_2,\ u_3 v_1 - u_1 v_3,\ u_1 v_2 - u_2 v_1)$$
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductFormula.gif" alt="외적 공식 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductFormula.gif" alt="외적 공식 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">예시</h3>
 <p data-ke-size="size16">$\vec{u} = (1, 2, 3)$, $\vec{v} = (4, 5, 6)$일 때:</p>
@@ -68,7 +98,7 @@ $$\text{평행사변형의 넓이} = \|\vec{u} \times \vec{v}\|$$
 $$\text{삼각형의 넓이} = \frac{1}{2}\|\vec{u} \times \vec{v}\|$$
 <p data-ke-size="size16">두 벡터가 평행하면 $\sin\theta = 0$이 되어 외적이 영벡터가 된다. 반대로 두 벡터가 직교하면 $\sin 90° = 1$로 외적의 크기가 최대가 된다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductArea.gif" alt="외적과 평행사변형 넓이 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/2_3_CrossProductArea.gif" alt="외적과 평행사변형 넓이 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -155,4 +185,4 @@ $$V = |\vec{u} \cdot (\vec{v} \times \vec{w})|$$
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>행렬(Matrix)</b>을 알아본다. 여러 벡터와 방정식을 하나의 표 형태로 묶어 다루는 강력한 도구를 소개한다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/40"><b>행렬이란?</b></a>을 알아본다.</p>

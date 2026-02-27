@@ -8,20 +8,49 @@
       "description": "특이값 분해(SVD, Singular Value Decomposition)의 정의, U, Σ, V 행렬의 역할, 특이값 계산 방법, SVD와 랭크의 관계를 Manim 애니메이션으로 설명합니다. 네 가지 부분공간과의 연결까지 완벽 정리.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
-      "articleSection": "특이값 분해(SVD) (Chapter 8)",
-      "keywords": ["특이값 분해", "SVD", "특이값", "좌특이벡터", "우특이벡터", "선형대수"],
-      "timeRequired": "PT11M"
+      "articleSection": "특이값 분해 (Chapter 8)",
+      "keywords": [
+        "특이값 분해",
+        "SVD",
+        "특이값",
+        "좌특이벡터",
+        "우특이벡터",
+        "선형대수"
+      ],
+      "timeRequired": "PT11M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_1_SVDFormula.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.8 특이값 분해(SVD)", "item": "https://example.com/blog/chapter-8/" },
-        { "@type": "ListItem", "position": 4, "name": "8.1 특이값 분해 정의", "item": "https://example.com/blog/8-1-svd-definition" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "8.1 특이값 분해 정의",
+          "item": "https://gunbungmath.tistory.com/58"
+        }
       ]
     }
   ]
@@ -42,7 +71,7 @@
 <p data-ke-size="size16">임의의 실수 행렬 $A \in \mathbb{R}^{m \times n}$에 대해, 다음과 같이 분해할 수 있다:</p>
 $$A = U\Sigma V^T$$
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_1_SVDFormula.gif" alt="SVD 공식 A = UΣV^T 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_1_SVDFormula.gif" alt="SVD 공식 A = UΣV^T 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <p data-ke-size="size16">각 행렬의 역할:</p>
 <table data-ke-align="alignLeft">
@@ -116,7 +145,7 @@ $$\vec{u}_1 = \frac{1}{\sigma_1}A\vec{v}_1 = \frac{1}{5} \cdot \frac{1}{\sqrt{2}
 $$\vec{u}_2 = \frac{1}{\sigma_2}A\vec{v}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}$$
 $$\Sigma = \begin{pmatrix}5&0&0\\0&3&0\end{pmatrix}$$
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_1_SVDComponents.gif" alt="SVD 구성요소 U, Σ, V 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_1_SVDComponents.gif" alt="SVD 구성요소 U, Σ, V 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -207,4 +236,4 @@ $$\text{rank}(A) = r = \#\{\sigma_i : \sigma_i > 0\}$$
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>SVD의 기하학적 의미</b>를 살펴보며, 임의의 선형변환이 "회전-늘리기-회전"으로 분해되는 과정을 직관적으로 이해해 본다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/59"><b>SVD의 기하학적 의미</b></a>을 알아본다.</p>

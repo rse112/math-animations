@@ -8,20 +8,50 @@
       "description": "역행렬의 정의·유일성·성질, 2×2 역행렬 공식, 행렬식의 기하학적 의미(넓이 배율), 역행렬 존재 조건(det≠0)을 Manim 애니메이션과 함께 설명합니다.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "행렬 (Chapter 3)",
-      "keywords": ["역행렬", "행렬식", "determinant", "inverse matrix", "가역행렬", "특이행렬", "선형대수"],
-      "timeRequired": "PT11M"
+      "keywords": [
+        "역행렬",
+        "행렬식",
+        "determinant",
+        "inverse matrix",
+        "가역행렬",
+        "특이행렬",
+        "선형대수"
+      ],
+      "timeRequired": "PT11M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_InverseMatrix2x2.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.3 행렬", "item": "https://example.com/blog/chapter-3/" },
-        { "@type": "ListItem", "position": 4, "name": "3.3 역행렬과 행렬식", "item": "https://example.com/blog/3-3-inverse-determinant" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "3.3 역행렬과 행렬식",
+          "item": "https://gunbungmath.tistory.com/42"
+        }
       ]
     }
   ]
@@ -71,7 +101,7 @@ $$\det A = 3 \cdot 2 - 1 \cdot 5 = 6 - 5 = 1$$
 $$A^{-1} = \frac{1}{1}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$$
 <p data-ke-size="size16">검증: $AA^{-1} = \begin{pmatrix}3&1\\5&2\end{pmatrix}\begin{pmatrix}2&-1\\-5&3\end{pmatrix} = \begin{pmatrix}1&0\\0&1\end{pmatrix} = I\ \checkmark$</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_InverseMatrix2x2.gif" alt="2×2 역행렬 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_InverseMatrix2x2.gif" alt="2×2 역행렬 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -91,7 +121,7 @@ $$\det A = \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$$
 <li>$\det A < 0$: 방향(오리엔테이션)이 뒤집힌다.</li>
 </ul>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_Determinant2x2.gif" alt="2×2 행렬식 기하학적 의미 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/3_3_Determinant2x2.gif" alt="2×2 행렬식 기하학적 의미 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">3×3 행렬식</h3>
 $$\det\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix} = a_{11}(a_{22}a_{33}-a_{23}a_{32}) - a_{12}(a_{21}a_{33}-a_{23}a_{31}) + a_{13}(a_{21}a_{32}-a_{22}a_{31})$$
@@ -172,4 +202,4 @@ $$A\vec{x} = \vec{b} \text{ 의 유일해} \quad \Leftrightarrow \quad \det A \n
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>선형변환(Linear Transformation)</b>을 알아본다. 행렬이 벡터 공간을 어떻게 변환하는지, 그 기하학적 의미를 깊이 탐구한다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/43"><b>선형변환이란?</b></a>을 알아본다.</p>

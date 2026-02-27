@@ -8,20 +8,50 @@
       "description": "특이값 분해(SVD)의 핵심 응용인 저랭크 근사, Eckart-Young 정리, 이미지 압축, PCA 연결, 무어-펜로즈 의사역행렬, 조건수를 Manim 애니메이션으로 설명합니다. 선형대수 완성 편.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
-      "articleSection": "특이값 분해(SVD) (Chapter 8)",
-      "keywords": ["SVD 응용", "저랭크 근사", "이미지 압축", "PCA", "의사역행렬", "조건수", "선형대수"],
-      "timeRequired": "PT12M"
+      "articleSection": "특이값 분해 (Chapter 8)",
+      "keywords": [
+        "SVD 응용",
+        "저랭크 근사",
+        "이미지 압축",
+        "PCA",
+        "의사역행렬",
+        "조건수",
+        "선형대수"
+      ],
+      "timeRequired": "PT12M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_LowRankApproximation.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.8 특이값 분해(SVD)", "item": "https://example.com/blog/chapter-8/" },
-        { "@type": "ListItem", "position": 4, "name": "8.3 SVD의 응용", "item": "https://example.com/blog/8-3-svd-applications" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "8.3 SVD의 응용",
+          "item": "https://gunbungmath.tistory.com/60"
+        }
       ]
     }
   ]
@@ -43,7 +73,7 @@
 $$A = U\Sigma V^T = \sum_{i=1}^{r} \sigma_i \vec{u}_i \vec{v}_i^T$$
 <p data-ke-size="size16">각 항 $\sigma_i \vec{u}_i \vec{v}_i^T$는 <b>랭크-1 행렬</b>이다. 첫 번째 항이 $A$에서 가장 "중요한" 정보를, 이후 항들이 점차 덜 중요한 세부 정보를 담는다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_LowRankApproximation.gif" alt="저랭크 근사 — 특이값 개수에 따른 행렬 근사" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_LowRankApproximation.gif" alt="저랭크 근사 — 특이값 개수에 따른 행렬 근사" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">Rank-$k$ 근사</h3>
 <p data-ke-size="size16">처음 $k$개의 항만 유지한 <b>Rank-$k$ 근사</b>:</p>
@@ -78,7 +108,7 @@ $$\min_{\text{rank}(B) \leq k} \|A - B\|_F = \|A - A_k\|_F = \sqrt{\sigma_{k+1}^
 </ul>
 <p data-ke-size="size16">큰 특이값들이 전체 정보의 대부분을 담고 있기 때문에, $k$를 적절히 선택하면 시각적으로 거의 손실 없이 압축할 수 있다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_SVDApplications.gif" alt="SVD 응용 — PCA, 이미지 압축, 의사역행렬 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/8_3_SVDApplications.gif" alt="SVD 응용 — PCA, 이미지 압축, 의사역행렬 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 

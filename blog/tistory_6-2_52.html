@@ -8,20 +8,49 @@
       "description": "특성방정식(characteristic equation)과 특성다항식을 이용해 고유값과 고유벡터를 구하는 방법을 단계별로 설명합니다. 2×2 행렬 예시, 대수적/기하학적 중복도, trace와 det의 관계까지 완벽 정리.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "고유값과 고유벡터 (Chapter 6)",
-      "keywords": ["특성방정식", "특성다항식", "고유값", "행렬식", "trace", "선형대수"],
-      "timeRequired": "PT10M"
+      "keywords": [
+        "특성방정식",
+        "특성다항식",
+        "고유값",
+        "행렬식",
+        "trace",
+        "선형대수"
+      ],
+      "timeRequired": "PT10M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/6_2_CharacteristicEquation.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.6 고유값과 고유벡터", "item": "https://example.com/blog/chapter-6/" },
-        { "@type": "ListItem", "position": 4, "name": "6.2 특성방정식", "item": "https://example.com/blog/6-2-characteristic-equation" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "6.2 특성방정식",
+          "item": "https://gunbungmath.tistory.com/52"
+        }
       ]
     }
   ]
@@ -48,7 +77,7 @@ $$(A - \lambda I)\vec{v} = \vec{0}$$
 $$\det(A - \lambda I) = 0$$
 <p data-ke-size="size16">이것이 <b>특성방정식(characteristic equation)</b>이다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/6_2_CharacteristicEquation.gif" alt="특성방정식 도출 과정 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/6_2_CharacteristicEquation.gif" alt="특성방정식 도출 과정 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">특성다항식</h3>
 <p data-ke-size="size16">$\det(A - \lambda I)$를 $\lambda$에 대한 다항식으로 전개한 것을 <b>특성다항식(characteristic polynomial)</b>이라 한다. $n \times n$ 행렬에 대해 특성다항식의 차수는 $n$이며, 따라서 (복소수 범위에서) 정확히 $n$개의 고유값이 존재한다(중복 포함).</p>
@@ -159,4 +188,4 @@ $$\lambda_1 + \lambda_2 = \text{tr}(A), \qquad \lambda_1 \cdot \lambda_2 = \det(
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>대각화(Diagonalization)</b>를 통해 고유값과 고유벡터를 활용해 행렬의 거듭제곱을 효율적으로 계산하는 방법을 알아본다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/53"><b>대각화(Diagonalization)</b></a>을 알아본다.</p>

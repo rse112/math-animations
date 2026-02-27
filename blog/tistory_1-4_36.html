@@ -8,20 +8,50 @@
       "description": "벡터의 크기(norm)를 피타고라스 정리로 계산하는 방법, 단위벡터의 정의와 구하는 법, 표준 단위벡터, 크기-방향 분해를 Manim 애니메이션으로 시각적으로 설명합니다.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "벡터 (Chapter 1)",
-      "keywords": ["벡터 크기", "norm", "단위벡터", "unit vector", "정규화", "표준 기저벡터", "선형대수"],
-      "timeRequired": "PT9M"
+      "keywords": [
+        "벡터 크기",
+        "norm",
+        "단위벡터",
+        "unit vector",
+        "정규화",
+        "표준 기저벡터",
+        "선형대수"
+      ],
+      "timeRequired": "PT9M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_4_VectorMagnitude.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.1 벡터", "item": "https://example.com/blog/chapter-1/" },
-        { "@type": "ListItem", "position": 4, "name": "1.4 벡터의 크기와 단위벡터", "item": "https://example.com/blog/1-4-magnitude-unit-vector" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "1.4 벡터의 크기와 단위벡터",
+          "item": "https://gunbungmath.tistory.com/36"
+        }
       ]
     }
   ]
@@ -31,7 +61,7 @@
 <!-- ══ 도입 ══ -->
 <h2 data-ke-size="size26">도입</h2>
 <p data-ke-size="size16">스마트폰 GPS가 두 정보를 동시에 알려준다고 생각해보자. "목적지까지 직선거리 500m, 방향은 북동쪽." 여기서 <b>거리(500m)</b> 는 크기를, <b>북동쪽</b> 은 방향을 나타낸다. 내비게이션이 제대로 안내하려면 이 두 정보가 모두 필요하다.</p>
-<p data-ke-size="size16">벡터도 마찬가지다. 벡터 $\vec{v} = (3, 4)$ 라고 할 때, 이 벡터가 "얼마나 긴지(크기)"와 "어느 방향을 향하는지(방향)" 를 분리해서 생각할 수 있다. <b>크기</b> 는 피타고라스 정리로, <b>방향</b> 은 단위벡터로 표현한다. 이 두 개념을 이해하면 벡터를 훨씬 정밀하게 다룰 수 있다.</p>
+<p data-ke-size="size16">벡터도 마찬가지다. <a href="https://gunbungmath.tistory.com/35">이전 글에서 배운 스칼라 곱</a>으로 벡터의 크기를 조절할 수 있었다. 이번에는 벡터 $\vec{v} = (3, 4)$ 가 "얼마나 긴지(크기)"와 "어느 방향을 향하는지(방향)" 를 분리해서 생각해보자. <b>크기</b> 는 피타고라스 정리로, <b>방향</b> 은 단위벡터로 표현한다.</p>
 
 <hr data-ke-style="style1" />
 
@@ -54,7 +84,7 @@ $$\|\vec{v}\| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
 </ul>
 <p data-ke-size="size16">크기는 <b>항상 0 이상</b>이며, $\|\vec{v}\| = 0$ 이면 $\vec{v} = \vec{0}$ (영벡터) 이다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_4_VectorMagnitude.gif" alt="벡터 크기(norm) 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_4_VectorMagnitude.gif" alt="벡터 크기(norm) 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">3차원 크기</h3>
 <p data-ke-size="size16">3차원 벡터 $\vec{v} = (v_1, v_2, v_3)$ 의 크기는 피타고라스 정리를 두 번 적용하여 구한다:</p>
@@ -81,7 +111,7 @@ $$\hat{v} = \frac{(3, 4)}{5} = \left(\frac{3}{5},\ \frac{4}{5}\right) = (0.6,\ 0
 <p data-ke-size="size16">검증: $\|\hat{v}\| = \sqrt{0.6^2 + 0.8^2} = \sqrt{0.36 + 0.64} = \sqrt{1} = 1$ $\checkmark$</p>
 <p data-ke-size="size16"><b>주의:</b> 영벡터 $\vec{0}$ 는 크기가 0이므로 단위벡터가 존재하지 않는다 (0으로 나누기는 정의되지 않음).</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_4_UnitVector.gif" alt="단위벡터(정규화) 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/1_4_UnitVector.gif" alt="단위벡터(정규화) 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -169,4 +199,4 @@ $$\vec{v} = (v_1, v_2) = v_1\hat{i} + v_2\hat{j}$$
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 두 벡터 사이의 각도와 관련된 연산인 <b>내적(Dot Product)</b> 을 알아본다.</p>
+<p data-ke-size="size16">다음 글에서는 두 벡터 사이의 각도와 관련된 연산인 <a href="https://gunbungmath.tistory.com/37"><b>내적(Dot Product)</b></a>을 알아본다.</p>

@@ -8,20 +8,50 @@
       "description": "영공간(Null Space)과 열공간(Column Space)의 정의, 랭크-영공간 정리(rank + nullity = n), 해의 존재성 조건을 Manim 애니메이션으로 직관적으로 설명합니다.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "벡터공간 (Chapter 5)",
-      "keywords": ["영공간", "열공간", "랭크", "랭크-영공간 정리", "Null Space", "Column Space", "선형대수"],
-      "timeRequired": "PT10M"
+      "keywords": [
+        "영공간",
+        "열공간",
+        "랭크",
+        "랭크-영공간 정리",
+        "Null Space",
+        "Column Space",
+        "선형대수"
+      ],
+      "timeRequired": "PT10M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_4_NullSpaceViz.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.5 벡터공간", "item": "https://example.com/blog/chapter-5/" },
-        { "@type": "ListItem", "position": 4, "name": "5.4 영공간과 열공간", "item": "https://example.com/blog/5-4-null-column-space" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "5.4 영공간과 열공간",
+          "item": "https://gunbungmath.tistory.com/50"
+        }
       ]
     }
   ]
@@ -54,7 +84,7 @@ $$N(A) = \{\vec{x} \in \mathbb{R}^n \mid A\vec{x} = \vec{0}\}$$
 <p data-ke-size="size16">영공간의 차원을 <b>영공간 차원(Nullity)</b>이라 부른다:</p>
 $$\text{nullity}(A) = \dim(N(A))$$
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_4_NullSpaceViz.gif" alt="영공간 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_4_NullSpaceViz.gif" alt="영공간 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -81,7 +111,7 @@ $$C(A) = \{A\vec{x} \mid \vec{x} \in \mathbb{R}^n\} = \text{(A의 치역, Range 
 <p data-ke-size="size16">열공간의 차원을 <b>랭크(Rank)</b>라 부른다:</p>
 $$\text{rank}(A) = \dim(C(A))$$
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_4_ColumnSpaceViz.gif" alt="열공간 시각화" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/5_4_ColumnSpaceViz.gif" alt="열공간 시각화" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <hr data-ke-style="style1" />
 
@@ -167,4 +197,4 @@ $$N(A) = \text{span}\left\{\begin{pmatrix}-1\\-1\\1\end{pmatrix}\right\}, \quad 
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>고유값과 고유벡터 — 선형변환이 "방향을 바꾸지 않는" 특별한 벡터들</b>을 알아본다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/51"><b>고유값과 고유벡터란?</b></a>을 알아본다.</p>

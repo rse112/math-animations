@@ -8,20 +8,49 @@
       "description": "직교 벡터(orthogonal vectors)와 직교 행렬(orthogonal matrix)의 정의와 핵심 성질을 Manim 애니메이션으로 설명합니다. 길이 보존, 각도 보존, 크로네커 델타, 2차원 회전 행렬까지 완벽 정리.",
       "datePublished": "2026-02-27T00:00:00+09:00",
       "dateModified": "2026-02-27T00:00:00+09:00",
-      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
-      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://example.com" },
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
       "inLanguage": "ko-KR",
       "articleSection": "직교성 (Chapter 7)",
-      "keywords": ["직교 벡터", "직교 행렬", "정규직교", "크로네커 델타", "회전 행렬", "선형대수"],
-      "timeRequired": "PT10M"
+      "keywords": [
+        "직교 벡터",
+        "직교 행렬",
+        "정규직교",
+        "크로네커 델타",
+        "회전 행렬",
+        "선형대수"
+      ],
+      "timeRequired": "PT10M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/7_1_OrthogonalVectors.gif"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://example.com/" },
-        { "@type": "ListItem", "position": 2, "name": "선형대수", "item": "https://example.com/blog/" },
-        { "@type": "ListItem", "position": 3, "name": "Ch.7 직교성", "item": "https://example.com/blog/chapter-7/" },
-        { "@type": "ListItem", "position": 4, "name": "7.1 직교 벡터와 직교 행렬", "item": "https://example.com/blog/7-1-orthogonal-vectors-matrices" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "선형대수학",
+          "item": "https://gunbungmath.tistory.com/category/선형대수학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "7.1 직교 벡터와 직교 행렬",
+          "item": "https://gunbungmath.tistory.com/55"
+        }
       ]
     }
   ]
@@ -43,7 +72,7 @@
 $$\vec{u} \cdot \vec{v} = \vec{u}^T\vec{v} = \sum_{i=1}^{n} u_i v_i = 0$$
 <p data-ke-size="size16">이는 두 벡터가 기하학적으로 90도 각도를 이룬다는 것과 동치다(단, 둘 다 비영벡터인 경우).</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/7_1_OrthogonalVectors.gif" alt="직교 벡터 시각화 — 내적이 0인 두 벡터" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/7_1_OrthogonalVectors.gif" alt="직교 벡터 시각화 — 내적이 0인 두 벡터" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">예시</h3>
 $$\vec{u} = \begin{pmatrix}1\\2\\3\end{pmatrix}, \quad \vec{v} = \begin{pmatrix}1\\1\\-1\end{pmatrix}$$
@@ -87,7 +116,7 @@ $$Q^T Q = Q Q^T = I$$
 $$Q^{-1} = Q^T$$
 <p data-ke-size="size16">직교 행렬의 열벡터들은 정규직교 집합을 이루고, 행벡터들도 마찬가지로 정규직교 집합을 이룬다.</p>
 
-<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/7_1_OrthogonalMatrix.gif" alt="직교 행렬 — 길이와 각도를 보존하는 변환" style="display:block; margin:1.5rem auto;">
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/7_1_OrthogonalMatrix.gif" alt="직교 행렬 — 길이와 각도를 보존하는 변환" width="480" height="270" style="display:block; margin:1.5rem auto;">
 
 <h3 data-ke-size="size23">직교 행렬의 핵심 성질</h3>
 <p data-ke-size="size16"><b>길이 보존 (Length-preserving):</b></p>
@@ -163,4 +192,4 @@ $$= \begin{pmatrix} \cos^2\theta + \sin^2\theta & 0 \\ 0 & \sin^2\theta + \cos^2
 </tbody>
 </table>
 
-<p data-ke-size="size16">다음 글에서는 <b>그람-슈미트 과정(Gram-Schmidt process)</b>을 통해 임의의 선형독립 벡터 집합에서 정규직교기저를 체계적으로 만드는 방법을 알아본다.</p>
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/56"><b>그람-슈미트 과정</b></a>을 알아본다.</p>
