@@ -1,5 +1,6 @@
 venv/
-media/
+media/*
+!media/gifs/
 __pycache__/
 *.pyc
 .DS_Store
