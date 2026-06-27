@@ -1,0 +1,100 @@
+<!-- ═══════════════════════════════════════════════════════════
+  [제목]
+  베이즈 정리 완벽 정리 — P(A|B)를 거꾸로 뒤집는 법과 의료검사의 함정
+
+  [태그 (10개)]
+  베이즈 정리, 사후확률, 조건부확률 뒤집기, 전확률 공식, 거짓양성, 확률과통계, 수리통계, Bayes theorem, 수학, 확률
+
+  [카테고리] 수리통계학
+
+  ※ 발행 후 글 번호로 BreadcrumbList item URL과 이전 글 링크(____)를 채우세요.
+═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "9.6 베이즈 정리 — P(A|B)를 거꾸로 뒤집기와 의료검사 예시",
+      "description": "조건부확률을 양방향으로 연결해 P(A|B)=P(B|A)P(A)/P(B)를 유도하고, 전확률 공식과 함께 '양성인데 실제 병일 확률'이 직관과 다른 이유를 Manim 애니메이션으로 설명합니다.",
+      "datePublished": "2026-06-27T21:00:00+09:00",
+      "dateModified": "2026-06-27T21:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://gunbungmath.tistory.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "확률 (Chapter 9)",
+      "keywords": ["베이즈 정리", "사후확률", "조건부확률 뒤집기", "전확률 공식", "거짓양성", "수리통계"],
+      "timeRequired": "PT10M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_6_bayes.gif"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://gunbungmath.tistory.com/" },
+        { "@type": "ListItem", "position": 2, "name": "수리통계학", "item": "https://gunbungmath.tistory.com/category/수리통계학" },
+        { "@type": "ListItem", "position": 3, "name": "9.6 베이즈 정리", "item": "https://gunbungmath.tistory.com/____" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">정확도 99%인 질병 검사에서 <b>양성</b>이 나왔다. 그렇다면 실제로 그 병에 걸렸을 확률은 99%일까? 놀랍게도, 그 병이 드물다면 실제 확률은 <b>50%도 안 될 수 있다.</b> 이 직관에 반하는 결과를 정확히 계산해 주는 도구가 바로 <b>베이즈 정리</b>다.</p>
+<p data-ke-size="size16">📌 <a href="https://gunbungmath.tistory.com/____"><b>이전 글: 독립과 종속</b></a>까지 왔다면, 베이즈 정리는 조건부확률을 <b>거꾸로 뒤집는</b> 마지막 한 걸음이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 베이즈 유도 ══ -->
+<h2 data-ke-size="size26">베이즈 정리 — 두 방향을 연결하기</h2>
+<p data-ke-size="size16">곱셈정리는 같은 교집합 $P(A \cap B)$를 두 가지 방향으로 쓸 수 있게 해준다.</p>
+$$P(A \cap B) = P(B)\,P(A|B), \qquad P(A \cap B) = P(A)\,P(B|A)$$
+<p data-ke-size="size16">두 식의 좌변이 같으므로 우변끼리 같다. 이를 $P(A|B)$에 대해 정리하면 <b>베이즈 정리</b>가 나온다.</p>
+$$P(A|B) = \frac{P(B|A)\,P(A)}{P(B)}$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_6_bayes.gif" alt="베이즈 정리 - 두 방향의 조건부확률을 연결해 P(A|B)를 P(B|A)로 뒤집는 애니메이션" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">핵심은 이것이다. <b>우리가 아는 방향 $P(B|A)$로부터, 알고 싶은 반대 방향 $P(A|B)$를 구한다.</b> "병이 있을 때 양성($P(양성|병)$)"은 알기 쉽지만, 정작 궁금한 "양성일 때 병($P(병|양성)$)"은 뒤집어야 나온다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 전확률 공식 ══ -->
+<h2 data-ke-size="size26">분모 P(B)는 전확률 공식으로</h2>
+<p data-ke-size="size16">베이즈 정리의 분모 $P(B)$는 보통 직접 주어지지 않는다. 이때 $B$가 일어나는 모든 경로를 더하는 <b>전확률 공식</b>을 쓴다.</p>
+$$P(B) = P(B|A)\,P(A) + P(B|A^c)\,P(A^c)$$
+<p data-ke-size="size16">"병이 있는 사람의 양성"과 "병이 없는 사람의 양성(거짓양성)"을 모두 합쳐야 전체 양성 확률이 된다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 의료검사 예제 ══ -->
+<h2 data-ke-size="size26">예제 — 직관을 뒤집는 의료검사</h2>
+<p data-ke-size="size16">조건을 정리하자.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li data-ke-size="size16">병에 걸린 사람 비율: $P(\text{병}) = 0.01$ (1%, 희귀병)</li>
+<li data-ke-size="size16">병이 있으면 양성: $P(\text{양성}|\text{병}) = 0.99$</li>
+<li data-ke-size="size16">병이 없는데 양성(거짓양성): $P(\text{양성}|\text{병}^c) = 0.05$</li>
+</ul>
+<p data-ke-size="size16">먼저 전확률로 전체 양성 확률을 구한다.</p>
+$$P(\text{양성}) = 0.99 \times 0.01 + 0.05 \times 0.99 = 0.0099 + 0.0495 = 0.0594$$
+<p data-ke-size="size16">이제 베이즈 정리로 "양성일 때 실제 병일 확률"을 구한다.</p>
+$$P(\text{병}|\text{양성}) = \frac{0.99 \times 0.01}{0.0594} \approx 0.167$$
+<p data-ke-size="size16">검사 정확도가 99%인데도, 양성일 때 실제 병일 확률은 <b>약 17%</b>에 불과하다. 병 자체가 드물어서, 건강한 사람들 중 생기는 <b>거짓양성</b>의 수가 진짜 환자보다 훨씬 많기 때문이다. 베이즈 정리는 이런 직관의 함정을 정확히 잡아준다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr><th>개념</th><th>설명/공식</th></tr>
+</thead>
+<tbody>
+<tr><td>베이즈 정리</td><td>$P(A|B) = \dfrac{P(B|A)\,P(A)}{P(B)}$</td></tr>
+<tr><td>핵심 아이디어</td><td>아는 방향 $P(B|A)$로 반대 방향 $P(A|B)$를 구함</td></tr>
+<tr><td>전확률 공식</td><td>$P(B) = P(B|A)P(A) + P(B|A^c)P(A^c)$</td></tr>
+<tr><td>거짓양성의 함정</td><td>희귀한 사건에서는 정확도가 높아도 사후확률이 낮을 수 있음</td></tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">이로써 <b>확률 시리즈</b>가 마무리된다. 표본공간에서 시작해 조건부확률을 거쳐 베이즈 정리까지, 확률의 큰 흐름을 한 줄로 꿰었다. 다음 시리즈에서는 <b>확률분포와 통계</b>로 이어진다.</p>

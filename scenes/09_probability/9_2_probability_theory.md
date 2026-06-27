@@ -6,6 +6,7 @@
 |---------|------|
 | `UnionIntersection` | 벤 다이어그램을 통한 합집합/교집합 시각화 |
 | `ProbabilityAxioms` | 확률의 3가지 공리 |
+| `AdditionRule` | ⭐ 덧셈정리 $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ (겹친 부분 이중 카운트 → 한 번 빼기) |
 
 ## 핵심 개념
 

@@ -1,0 +1,173 @@
+<!-- ═══════════════════════════════════════════════════════════
+  티스토리 발행용 메타 (제목/태그 — 아래 내용을 각 입력칸에 복사)
+
+  [제목]
+  조건부확률 완벽 정리 — 정의·기호·공식을 '표본공간이 좁혀지는' 그림으로 이해하기
+
+  [태그 (10개)]
+  조건부확률, 조건부확률 정의, 조건부확률 기호, 표본공간, 곱셈정리, 베이즈 정리, conditional probability, 확률과통계, 수리통계, 수학
+
+  [카테고리] 수리통계학
+
+  ※ 발행 시 부여되는 글 번호로 아래 BreadcrumbList의 item URL과
+     이전/다음 글 링크(____)를 채워주세요.
+  ※ 아래 본문(<script>부터 끝까지)은 HTML 모드에 전체 복붙
+═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "9.3 조건부확률 (Conditional Probability) — 정의·기호·공식과 표본공간이 좁혀지는 직관",
+      "description": "조건부확률 P(A|B)의 정의와 기호 읽는 법, 그리고 '전체 표본공간이 B로 좁혀진다'는 핵심 직관과 공식 P(A|B)=P(A∩B)/P(B)를 Manim 애니메이션과 함께 설명합니다.",
+      "datePublished": "2026-06-27T21:00:00+09:00",
+      "dateModified": "2026-06-27T21:00:00+09:00",
+      "author": {
+        "@type": "Person",
+        "name": "선형대수 시각화 블로그"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "선형대수 시각화 블로그",
+        "url": "https://gunbungmath.tistory.com"
+      },
+      "inLanguage": "ko-KR",
+      "articleSection": "확률 (Chapter 9)",
+      "keywords": [
+        "조건부확률",
+        "조건부확률 정의",
+        "조건부확률 기호",
+        "표본공간",
+        "곱셈정리",
+        "수리통계"
+      ],
+      "timeRequired": "PT9M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_3_shrinking_sample_space.gif"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://gunbungmath.tistory.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "수리통계학",
+          "item": "https://gunbungmath.tistory.com/category/수리통계학"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "9.3 조건부확률",
+          "item": "https://gunbungmath.tistory.com/____"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">친구가 주사위를 굴렸다. "몇 나왔어?"라고 묻기 전, 6이 나올 확률은 $\frac{1}{6}$이다. 그런데 친구가 "짝수 나왔어"라고 한마디 흘리는 순간, 6이 나올 확률은 갑자기 $\frac{1}{3}$로 뛴다. <b>아무것도 바뀌지 않았는데 확률만 달라졌다.</b> 무슨 일이 일어난 걸까?</p>
+<p data-ke-size="size16">비가 온다는 걸 알면 길에 우산 든 사람이 많을 확률이 올라가고, 건강검진에서 한 항목이 양성이면 특정 질병일 확률이 달라진다. 이렇게 <b>어떤 정보(조건)가 주어졌을 때 확률이 어떻게 바뀌는지</b>를 다루는 것이 바로 <b>조건부확률(Conditional Probability)</b>이다.</p>
+<p data-ke-size="size16">이 글의 목표는 단 하나다. 공식 $P(A|B)=\dfrac{P(A\cap B)}{P(B)}$를 <b>외우는 것이 아니라 "보이게"</b> 만드는 것. 핵심은 "표본공간이 좁혀진다"는 한 장면에 있다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 조건부확률이란 ══ -->
+<h2 data-ke-size="size26">조건부확률이란? (정의와 기호)</h2>
+<p data-ke-size="size16"><b>조건부확률</b>이란 <b>사건 $B$가 일어났다는 조건에서 사건 $A$가 일어날 확률</b>을 말한다. 기호로는 다음과 같이 쓴다.</p>
+$$P(A|B)$$
+<p data-ke-size="size16">읽는 법이 중요하다. 가운데 세로줄 $|$ 은 "~가 주어졌을 때(given)"라는 뜻이다. 즉 $P(A|B)$는 <b>"B가 주어졌을 때 A"</b>라고 읽는다. 순서에 주의하자. $P(A|B)$와 $P(B|A)$는 완전히 다른 값이다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_3_conditional_definition.gif" alt="조건부확률 정의와 기호 P(A|B)" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">그리고 그 값은 다음 공식으로 계산한다.</p>
+$$P(A|B) = \frac{P(A \cap B)}{P(B)} \quad (\text{단, } P(B) > 0)$$
+<p data-ke-size="size16">왜 이런 모양일까? 분모에 왜 하필 $P(B)$가 올까? 여기서부터가 이 글의 핵심이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 직관 ══ -->
+<h2 data-ke-size="size26">핵심 직관 — 세계가 B로 좁혀진다</h2>
+<p data-ke-size="size16">조건부확률의 본질은 이 한 문장이다.</p>
+<p data-ke-size="size16">👉 <b>"B가 일어났다"는 것을 아는 순간, 우리의 전체 세계(표본공간)는 B 안으로 줄어든다.</b></p>
+<p data-ke-size="size16">원래 전체 표본공간 $\Omega$ 안에서 $A$가 차지하는 비율이 $P(A)$였다. 그런데 "B가 일어났다"는 정보가 들어오면, B 바깥의 결과들은 더 이상 가능성이 없다. <b>이제 B가 새로운 '전체'가 된다.</b> 그 좁혀진 세계 안에서 $A$에 해당하는 부분은 오직 $A$와 $B$가 겹치는 영역, 즉 $A \cap B$ 뿐이다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_3_shrinking_sample_space.gif" alt="조건부확률 핵심 직관 - 표본공간이 B로 좁혀지고 A∩B가 새로운 A가 되는 애니메이션" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">애니메이션을 보자. 전체 사각형($\Omega$)이 사라지고 빨간 원($B$)이 화면 전체로 확대된다. 이제 우리가 따지는 분모는 $\Omega$가 아니라 <b>$B$</b>이고, 분자는 그 안의 초록 영역 <b>$A \cap B$</b>이다. 그래서 자연스럽게 다음이 성립한다.</p>
+$$P(A|B) = \frac{A \cap B \text{ 의 크기}}{B \text{ 의 크기}} = \frac{P(A \cap B)}{P(B)}$$
+<p data-ke-size="size16">분모의 $P(B)$는 "줄어든 새 세계의 전체 크기"였던 것이다. 공식이 외울 것에서 <b>보이는 것</b>으로 바뀌는 순간이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 예제 ══ -->
+<h2 data-ke-size="size26">예제 — 공학 전공 학생</h2>
+<p data-ke-size="size16">어느 대학교의 학생 구성이 다음과 같다고 하자.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li data-ke-size="size16">남성 60%, 여성 40%</li>
+<li data-ke-size="size16">남성 중 30%가 공학 전공, 여성 중 20%가 공학 전공</li>
+</ul>
+<p data-ke-size="size16">한 학생을 무작위로 뽑았더니 <b>공학 전공</b>이었다. 이 학생이 <b>남성일 확률</b>은? 즉 $P(\text{남성}|\text{공학})$을 구하는 문제다.</p>
+<p data-ke-size="size16">먼저 "공학 전공"이라는 조건(분모)의 확률을 구한다.</p>
+$$P(\text{공학}) = \underbrace{0.6 \times 0.3}_{\text{남성∩공학}} + \underbrace{0.4 \times 0.2}_{\text{여성∩공학}} = 0.18 + 0.08 = 0.26$$
+<p data-ke-size="size16">분자는 "남성이면서 공학"인 부분이다.</p>
+$$P(\text{남성} \cap \text{공학}) = 0.6 \times 0.3 = 0.18$$
+<p data-ke-size="size16">따라서 조건부확률은:</p>
+$$P(\text{남성}|\text{공학}) = \frac{0.18}{0.26} \approx 0.69$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_3_conditional_example.gif" alt="조건부확률 예제 - 공학 전공 학생이 남성일 확률을 면적으로 계산" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">"공학 전공"이라는 정보 하나로 세계가 공학 전공자(전체의 26%)로 좁혀졌고, 그 안에서 남성이 차지하는 비율이 약 69%인 것이다. 정보가 들어오기 전 남성일 확률 60%보다 올라갔다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 곱셈정리로 연결 ══ -->
+<h2 data-ke-size="size26">곱셈정리로 이어진다</h2>
+<p data-ke-size="size16">조건부확률 공식의 양변에 $P(B)$를 곱하면, 두 사건이 동시에 일어날 확률을 구하는 <b>확률의 곱셈정리</b>가 나온다.</p>
+$$P(A \cap B) = P(B)\,P(A|B)$$
+<p data-ke-size="size16">즉 조건부확률은 그 자체로도 중요하지만, 곱셈정리·독립·베이즈 정리로 가는 출발점이기도 하다. 이 흐름은 다음 글들에서 이어진다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr>
+<th>개념</th>
+<th>설명/공식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>조건부확률 기호</td>
+<td>$P(A|B)$ = "B가 주어졌을 때 A"</td>
+</tr>
+<tr>
+<td>정의(공식)</td>
+<td>$P(A|B) = \dfrac{P(A \cap B)}{P(B)}\ (P(B)>0)$</td>
+</tr>
+<tr>
+<td>핵심 직관</td>
+<td>B가 주어지면 표본공간이 B로 좁혀짐. 분모 = 줄어든 새 전체</td>
+</tr>
+<tr>
+<td>순서 주의</td>
+<td>$P(A|B) \neq P(B|A)$</td>
+</tr>
+<tr>
+<td>곱셈정리</td>
+<td>$P(A \cap B) = P(B)\,P(A|B)$</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/____"><b>확률의 곱셈정리</b></a>를 알아본다.</p>

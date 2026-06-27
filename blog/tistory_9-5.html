@@ -1,0 +1,96 @@
+<!-- ═══════════════════════════════════════════════════════════
+  [제목]
+  사건의 독립과 종속 완벽 정리 — P(A|B)=P(A)의 의미와 배반과의 차이
+
+  [태그 (10개)]
+  독립사건, 종속사건, 사건의 독립, 독립 판별, 배반과 독립, 확률과통계, 수리통계, independence, 수학, 확률
+
+  [카테고리] 수리통계학
+
+  ※ 발행 후 글 번호로 BreadcrumbList item URL과 이전/다음 글 링크(____)를 채우세요.
+═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "9.5 사건의 독립과 종속 — P(A|B)=P(A)의 의미와 판별법",
+      "description": "두 사건이 서로 영향을 주는지 따지는 독립과 종속의 정의 P(A|B)=P(A) ⟺ P(A∩B)=P(A)P(B)를 설명하고, 자주 혼동하는 '배반사건'과의 차이를 Manim 애니메이션과 함께 정리합니다.",
+      "datePublished": "2026-06-27T21:00:00+09:00",
+      "dateModified": "2026-06-27T21:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://gunbungmath.tistory.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "확률 (Chapter 9)",
+      "keywords": ["독립사건", "종속사건", "사건의 독립", "독립 판별", "배반과 독립", "수리통계"],
+      "timeRequired": "PT8M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_5_independence.gif"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://gunbungmath.tistory.com/" },
+        { "@type": "ListItem", "position": 2, "name": "수리통계학", "item": "https://gunbungmath.tistory.com/category/수리통계학" },
+        { "@type": "ListItem", "position": 3, "name": "9.5 사건의 독립과 종속", "item": "https://gunbungmath.tistory.com/____" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">동전을 두 번 던질 때, 첫 번째 결과가 두 번째에 영향을 줄까? 상식적으로 아니다. 반면 주머니에서 공을 비복원으로 뽑을 때는 첫 번째 결과가 두 번째 확률을 바꾼다. 이렇게 <b>한 사건이 다른 사건의 확률에 영향을 주는지</b>를 따지는 것이 <b>독립과 종속</b>이다.</p>
+<p data-ke-size="size16">📌 <a href="https://gunbungmath.tistory.com/____"><b>이전 글: 곱셈정리</b></a>에서 본 $P(A \cap B) = P(B)P(A|B)$가 독립일 때 어떻게 간단해지는지가 핵심이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 독립의 정의 ══ -->
+<h2 data-ke-size="size26">독립 — 정보가 확률을 바꾸지 않는다</h2>
+<p data-ke-size="size16">사건 $B$가 일어났다는 정보가 사건 $A$의 확률을 <b>전혀 바꾸지 않을 때</b>, $A$와 $B$는 <b>독립</b>이라고 한다.</p>
+$$P(A|B) = P(A)$$
+<p data-ke-size="size16">이를 곱셈정리 $P(A \cap B) = P(B)P(A|B)$에 대입하면, 독립의 가장 유용한 형태가 나온다.</p>
+$$P(A \cap B) = P(A)\,P(B)$$
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_5_independence.gif" alt="사건의 독립과 종속 - P(A|B)=P(A)이면 독립, 달라지면 종속임을 보여주는 애니메이션" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">즉 <b>독립이면 두 확률을 그냥 곱하면 된다.</b> 동전 두 번 던지기에서 둘 다 앞면일 확률은 $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 종속 ══ -->
+<h2 data-ke-size="size26">종속 — 서로 영향을 준다</h2>
+<p data-ke-size="size16">반대로 $B$가 일어났을 때 $A$의 확률이 <b>달라지면</b> 두 사건은 <b>종속</b>이다.</p>
+$$P(A|B) \neq P(A)$$
+<p data-ke-size="size16">비복원 추출이 대표적이다. 빨간 공 3개·파란 공 2개에서 첫 번째로 빨강을 뽑으면, 두 번째 빨강 확률이 $\frac{3}{5}$에서 $\frac{2}{4}$로 바뀐다. 첫 사건이 둘째 확률을 바꿨으니 종속이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 배반 vs 독립 ══ -->
+<h2 data-ke-size="size26">⚠️ 배반사건과 독립은 다르다 (자주 혼동!)</h2>
+<p data-ke-size="size16">시험에서 가장 많이 틀리는 부분이다. 둘은 <b>완전히 다른 개념</b>이다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li data-ke-size="size16"><b>배반</b>: 동시에 일어날 수 없음 → $P(A \cap B) = 0$</li>
+<li data-ke-size="size16"><b>독립</b>: 서로 영향 없음 → $P(A \cap B) = P(A)P(B)$</li>
+</ul>
+<p data-ke-size="size16">오히려 두 사건이 (각각 확률이 0이 아니면서) <b>배반이면 반드시 종속</b>이다. 한쪽이 일어나면 다른 쪽은 절대 못 일어나므로, 강하게 영향을 주기 때문이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr><th>개념</th><th>설명/공식</th></tr>
+</thead>
+<tbody>
+<tr><td>독립의 정의</td><td>$P(A|B) = P(A)$</td></tr>
+<tr><td>독립의 판별</td><td>$P(A \cap B) = P(A)\,P(B)$</td></tr>
+<tr><td>종속</td><td>$P(A|B) \neq P(A)$ (서로 영향)</td></tr>
+<tr><td>배반 ≠ 독립</td><td>배반: $P(A\cap B)=0$ / 독립: $P(A\cap B)=P(A)P(B)$</td></tr>
+<tr><td>주의</td><td>확률이 0이 아닌 배반사건은 항상 종속</td></tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/____"><b>베이즈 정리</b></a>를 알아본다.</p>

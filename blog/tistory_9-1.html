@@ -1,0 +1,102 @@
+<!-- ═══════════════════════════════════════════════════════════
+  [제목]
+  표본공간과 사건 완벽 정리 — 확률의 출발점, P(A)는 경우의 수 비율이다
+
+  [태그 (10개)]
+  표본공간, 사건, 근원사건, 확률의 정의, 경우의 수, 수학적 확률, 확률과통계, 수리통계, probability, 수학
+
+  [카테고리] 수리통계학
+
+  ※ 발행 후 글 번호로 BreadcrumbList item URL과 다음 글 링크(____)를 채우세요.
+═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "9.1 표본공간과 사건 — 확률의 출발점과 P(A)=|A|/|Ω|",
+      "description": "확률을 따지기 위한 첫 단계인 표본공간(Ω)과 사건의 정의, 그리고 수학적 확률 P(A)=경우의 수 비율을 주사위 예시와 Manim 애니메이션으로 설명합니다.",
+      "datePublished": "2026-06-27T21:00:00+09:00",
+      "dateModified": "2026-06-27T21:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://gunbungmath.tistory.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "확률 (Chapter 9)",
+      "keywords": ["표본공간", "사건", "근원사건", "확률의 정의", "경우의 수", "수리통계"],
+      "timeRequired": "PT7M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_1_sample_space.gif"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://gunbungmath.tistory.com/" },
+        { "@type": "ListItem", "position": 2, "name": "수리통계학", "item": "https://gunbungmath.tistory.com/category/수리통계학" },
+        { "@type": "ListItem", "position": 3, "name": "9.1 표본공간과 사건", "item": "https://gunbungmath.tistory.com/____" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">"주사위에서 6이 나올 확률은 $\frac{1}{6}$"이라는 말을 우리는 자연스럽게 한다. 그런데 이 $\frac{1}{6}$은 도대체 어디서 온 숫자일까? 확률을 제대로 계산하려면, 그 전에 반드시 해야 할 일이 있다. 바로 <b>"일어날 수 있는 모든 결과를 빠짐없이 적는 것"</b>이다.</p>
+<p data-ke-size="size16">이 글에서는 확률의 가장 기초이자 출발점인 <b>표본공간(Sample Space)</b>과 <b>사건(Event)</b>을 정리한다. 이 두 개념이 잡히면 확률 공식들이 "외우는 것"이 아니라 "세는 것"으로 보이기 시작한다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 표본공간 ══ -->
+<h2 data-ke-size="size26">표본공간 — 일어날 수 있는 모든 결과</h2>
+<p data-ke-size="size16"><b>표본공간 $\Omega$</b>는 어떤 시행에서 <b>일어날 수 있는 모든 결과의 집합</b>이다. 주사위 한 번 굴리기의 표본공간은 다음과 같다.</p>
+$$\Omega = \{1, 2, 3, 4, 5, 6\}$$
+<p data-ke-size="size16">표본공간의 원소 하나하나(예: "3이 나온다")를 <b>근원사건</b>이라 한다. 동전 한 개를 던지면 $\Omega = \{앞, 뒤\}$, 동전 두 개를 던지면 $\Omega = \{앞앞, 앞뒤, 뒤앞, 뒤뒤\}$로 원소가 4개다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 사건 ══ -->
+<h2 data-ke-size="size26">사건 — 표본공간의 부분집합</h2>
+<p data-ke-size="size16"><b>사건 $A$</b>는 표본공간의 <b>부분집합</b>이다. 즉 우리가 관심 있는 결과들의 모음이다. 예를 들어 주사위에서 "짝수가 나온다"는 사건은:</p>
+$$A = \{2, 4, 6\}$$
+<p data-ke-size="size16">표본공간 $\Omega = \{1,2,3,4,5,6\}$ 중에서 짝수에 해당하는 결과만 골라낸 부분집합이다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_1_sample_space.gif" alt="표본공간과 사건 - 주사위 표본공간에서 짝수 사건을 부분집합으로 강조" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 수학적 확률 ══ -->
+<h2 data-ke-size="size26">수학적 확률 — 비율로 정의하기</h2>
+<p data-ke-size="size16">표본공간의 모든 근원사건이 <b>똑같이 일어날 가능성</b>을 가질 때(예: 공정한 주사위), 사건 $A$의 확률은 다음과 같이 정의한다.</p>
+$$P(A) = \frac{|A|}{|\Omega|} = \frac{\text{사건 } A \text{의 경우의 수}}{\text{전체 경우의 수}}$$
+<p data-ke-size="size16">짝수 사건의 확률을 계산해 보자. $|A| = 3$(원소 2, 4, 6), $|\Omega| = 6$이므로:</p>
+$$P(A) = \frac{3}{6} = \frac{1}{2}$$
+<p data-ke-size="size16">처음의 $\frac{1}{6}$도 같은 원리다. "6이 나온다"는 사건은 원소가 1개이므로 $\frac{1}{6}$인 것이다. 확률은 결국 <b>전체 중 일부의 비율</b>이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 사건의 종류 ══ -->
+<h2 data-ke-size="size26">알아두면 좋은 사건들</h2>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li data-ke-size="size16"><b>여사건 $A^c$</b>: $A$가 일어나지 <b>않는</b> 사건. $P(A^c) = 1 - P(A)$</li>
+<li data-ke-size="size16"><b>배반사건</b>: 동시에 일어날 수 없는 두 사건. 즉 $A \cap B = \varnothing$</li>
+<li data-ke-size="size16"><b>전사건/공사건</b>: 표본공간 전체 $\Omega$(확률 1)와 빈 집합 $\varnothing$(확률 0)</li>
+</ul>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr><th>개념</th><th>설명/공식</th></tr>
+</thead>
+<tbody>
+<tr><td>표본공간 $\Omega$</td><td>일어날 수 있는 모든 결과의 집합</td></tr>
+<tr><td>사건 $A$</td><td>표본공간의 부분집합 ($A \subseteq \Omega$)</td></tr>
+<tr><td>수학적 확률</td><td>$P(A) = \dfrac{|A|}{|\Omega|}$ (등확률 가정)</td></tr>
+<tr><td>여사건</td><td>$P(A^c) = 1 - P(A)$</td></tr>
+<tr><td>배반사건</td><td>$A \cap B = \varnothing$ (동시에 불가능)</td></tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/____"><b>확률의 덧셈정리</b></a>를 알아본다.</p>

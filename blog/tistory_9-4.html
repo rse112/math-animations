@@ -1,0 +1,96 @@
+<!-- ═══════════════════════════════════════════════════════════
+  [제목]
+  확률의 곱셈정리 완벽 정리 — P(A∩B)와 확률 트리, 조건부확률의 짝꿍
+
+  [태그 (10개)]
+  곱셈정리, 교집합 확률, P(A∩B), 확률 트리, 조건부확률, 확률과통계, 수리통계, multiplication rule, 수학, 확률
+
+  [카테고리] 수리통계학
+
+  ※ 발행 후 글 번호로 BreadcrumbList item URL과 이전/다음 글 링크(____)를 채우세요.
+═══════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "9.4 확률의 곱셈정리 — P(A∩B)=P(B)P(A|B)와 확률 트리",
+      "description": "두 사건이 동시에 일어날 확률 P(A∩B)=P(B)P(A|B)를 조건부확률에서 유도하고, 확률 트리에서 경로의 곱으로 이해하는 방법을 Manim 애니메이션으로 설명합니다.",
+      "datePublished": "2026-06-27T21:00:00+09:00",
+      "dateModified": "2026-06-27T21:00:00+09:00",
+      "author": { "@type": "Person", "name": "선형대수 시각화 블로그" },
+      "publisher": { "@type": "Organization", "name": "선형대수 시각화 블로그", "url": "https://gunbungmath.tistory.com" },
+      "inLanguage": "ko-KR",
+      "articleSection": "확률 (Chapter 9)",
+      "keywords": ["곱셈정리", "교집합 확률", "P(A∩B)", "확률 트리", "조건부확률", "수리통계"],
+      "timeRequired": "PT8M",
+      "image": "https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_4_multiplication.gif"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://gunbungmath.tistory.com/" },
+        { "@type": "ListItem", "position": 2, "name": "수리통계학", "item": "https://gunbungmath.tistory.com/category/수리통계학" },
+        { "@type": "ListItem", "position": 3, "name": "9.4 확률의 곱셈정리", "item": "https://gunbungmath.tistory.com/____" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ══ 도입 ══ -->
+<h2 data-ke-size="size26">도입</h2>
+<p data-ke-size="size16">덧셈정리가 "A 또는 B"의 확률이었다면, <b>곱셈정리</b>는 "A 그리고 B"의 확률, 즉 두 사건이 <b>동시에</b> 일어날 확률 $P(A \cap B)$를 구한다. 그리고 이 정리는 사실 <b>조건부확률에서 곧바로 따라 나온다.</b></p>
+<p data-ke-size="size16">📌 <a href="https://gunbungmath.tistory.com/____"><b>이전 글: 조건부확률</b></a>에서 본 공식을 한 줄만 변형하면 끝이다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 곱셈정리 유도 ══ -->
+<h2 data-ke-size="size26">곱셈정리 — 조건부확률의 변형</h2>
+<p data-ke-size="size16">조건부확률의 정의는 다음과 같았다.</p>
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+<p data-ke-size="size16">양변에 $P(B)$를 곱하면 바로 <b>곱셈정리</b>가 된다.</p>
+$$P(A \cap B) = P(B)\,P(A|B)$$
+<p data-ke-size="size16">즉 "B가 일어나고, 그 다음 (B가 일어난 상황에서) A가 일어날 확률"을 곱하면 둘이 동시에 일어날 확률이 된다. 순서를 바꿔 $P(A \cap B) = P(A)\,P(B|A)$로도 쓸 수 있다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 확률 트리 ══ -->
+<h2 data-ke-size="size26">확률 트리 — 경로의 곱</h2>
+<p data-ke-size="size16">곱셈정리는 <b>확률 트리(나무 그림)</b>에서 가장 직관적이다. 각 가지에 확률을 적고, <b>뿌리에서 끝까지 가는 경로의 확률은 가지 확률들의 곱</b>이다.</p>
+
+<img src="https://cdn.jsdelivr.net/gh/rse112/math-animations@main/media/gifs/9_4_multiplication.gif" alt="확률의 곱셈정리 - 확률 트리에서 B를 거쳐 A로 가는 경로의 확률이 가지 확률의 곱임을 보여주는 애니메이션" width="480" height="270" style="display:block; margin:1.5rem auto;">
+
+<p data-ke-size="size16">뿌리에서 $B$로 가는 가지($P(B)$)와, $B$에서 $A$로 가는 가지($P(A|B)$)를 곱하면 그 경로 전체의 확률, 즉 $P(A \cap B)$가 나온다.</p>
+
+<h3 data-ke-size="size23">예제 — 연속으로 뽑기 (비복원)</h3>
+<p data-ke-size="size16">빨간 공 3개, 파란 공 2개가 든 주머니에서 공을 <b>연속으로 2개</b> 뽑는다(다시 넣지 않음). 둘 다 빨간 공일 확률은?</p>
+$$P(\text{빨강} \cap \text{빨강}) = \underbrace{\frac{3}{5}}_{\text{첫 번째}} \times \underbrace{\frac{2}{4}}_{\text{첫 빨강 뒤, 두 번째}} = \frac{6}{20} = \frac{3}{10}$$
+<p data-ke-size="size16">두 번째 확률 $\frac{2}{4}$가 바로 "첫 번째가 빨강일 때"의 <b>조건부확률</b>이다. 비복원 추출에서 곱셈정리가 자연스럽게 쓰인다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 독립 예고 ══ -->
+<h2 data-ke-size="size26">두 사건이 독립이면?</h2>
+<p data-ke-size="size16">만약 $B$가 일어나든 말든 $A$의 확률이 변하지 않는다면, 즉 $P(A|B) = P(A)$라면 곱셈정리는 더 간단해진다.</p>
+$$P(A \cap B) = P(A)\,P(B)$$
+<p data-ke-size="size16">이 "독립"이라는 개념은 다음 글에서 자세히 다룬다.</p>
+
+<hr data-ke-style="style1" />
+
+<!-- ══ 핵심 포인트 정리 ══ -->
+<h2 data-ke-size="size26">핵심 포인트 정리</h2>
+<table data-ke-align="alignLeft">
+<thead>
+<tr><th>개념</th><th>설명/공식</th></tr>
+</thead>
+<tbody>
+<tr><td>곱셈정리</td><td>$P(A \cap B) = P(B)\,P(A|B) = P(A)\,P(B|A)$</td></tr>
+<tr><td>유도</td><td>조건부확률 정의의 양변 $\times P(B)$</td></tr>
+<tr><td>확률 트리</td><td>경로의 확률 = 가지 확률들의 곱</td></tr>
+<tr><td>독립일 때</td><td>$P(A \cap B) = P(A)\,P(B)$</td></tr>
+</tbody>
+</table>
+
+<p data-ke-size="size16">다음 글에서는 <a href="https://gunbungmath.tistory.com/____"><b>사건의 독립과 종속</b></a>을 알아본다.</p>

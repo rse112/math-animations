@@ -1,10 +1,11 @@
 """9.2 Probability Theory — Manim Animation
 
-합집합, 교집합, 확률의 공리에 대한 애니메이션
+합집합, 교집합, 확률의 공리, 덧셈정리에 대한 애니메이션
 
 Rendering examples:
     manim -pqm scenes/09_probability/9_2_probability_theory.py UnionIntersection
     manim -pqm scenes/09_probability/9_2_probability_theory.py ProbabilityAxioms
+    manim -pqm scenes/09_probability/9_2_probability_theory.py AdditionRule
 """
 
 from manim import *
@@ -122,4 +123,49 @@ class ProbabilityAxioms(Scene):
         conclusion.to_edge(DOWN, buff=0.5)
         box = SurroundingRectangle(conclusion, color=GREEN, buff=0.15)
         self.play(Write(conclusion), Create(box))
+        self.wait(2)
+
+
+class AdditionRule(Scene):
+    """확률의 덧셈정리: P(A∪B) = P(A) + P(B) - P(A∩B) (포함-배제)"""
+
+    def construct(self):
+        title = Text("확률의 덧셈정리", font_size=36).to_edge(UP)
+        self.play(Write(title))
+
+        # 벤 다이어그램
+        ca = Circle(radius=1.5, color=BLUE, fill_opacity=0.3).shift(LEFT * 0.8 + DOWN * 0.3)
+        cb = Circle(radius=1.5, color=RED, fill_opacity=0.3).shift(RIGHT * 0.8 + DOWN * 0.3)
+        la = MathTex("A", color=BLUE, font_size=34).next_to(ca, UL, buff=0.1)
+        lb = MathTex("B", color=RED, font_size=34).next_to(cb, UR, buff=0.1)
+        self.play(Create(ca), Create(cb), Write(la), Write(lb))
+        self.wait(0.4)
+
+        # ① P(A) 더하기
+        step = Text("① P(A) 를 더한다", font_size=24, color=BLUE).to_edge(DOWN, buff=1.4)
+        ha = ca.copy().set_fill(BLUE, opacity=0.55)
+        self.play(FadeIn(ha), Write(step))
+        self.wait(0.8)
+
+        # ② P(B) 더하기 → 겹친 부분이 두 번 칠해짐
+        step2 = Text("② P(B) 를 더한다 → 겹친 곳이 두 번!", font_size=24, color=RED).to_edge(DOWN, buff=1.4)
+        hb = cb.copy().set_fill(RED, opacity=0.55)
+        inter = Intersection(ca, cb, fill_opacity=0.9, fill_color=PURPLE, stroke_color=PURPLE)
+        self.play(FadeOut(step), FadeIn(hb), Write(step2))
+        self.play(FadeIn(inter))
+        self.wait(1)
+
+        # ③ 겹친 P(A∩B) 한 번 빼기
+        step3 = Text("③ 겹친 P(A∩B) 를 한 번 뺀다", font_size=24, color=GREEN).to_edge(DOWN, buff=1.4)
+        self.play(FadeOut(step2), Write(step3))
+        self.play(inter.animate.set_fill(GREEN, opacity=0.5), FadeOut(ha), FadeOut(hb))
+        self.wait(0.8)
+
+        # 공식
+        formula = MathTex(
+            r"P(A \cup B) = P(A) + P(B) - P(A \cap B)",
+            font_size=34,
+            color=YELLOW,
+        ).to_edge(DOWN, buff=0.5)
+        self.play(FadeOut(step3), Write(formula))
         self.wait(2)
